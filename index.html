@@ -3,332 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA 2026™ | Ultimate Live Hub & AI Predictions</title>
+    <title>FIFA 2026™ | Quantum Matrix Engine</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        :root { --neon-cyan: #00f2fe; --neon-magenta: #ff0844; }
-        body { background-color: #050507; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        :root { --primary: #00f2fe; --secondary: #4facfe; }
+        body { background-color: #030305; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         .font-future { font-family: 'Orbitron', sans-serif; }
         
-        /* Fast Animated Background */
         .cyber-grid {
-            background-size: 50px 50px;
-            background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;
+            position: fixed; inset: 0; z-index: -1;
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(0, 242, 254, 0.05) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(0, 242, 254, 0.05) 1px, transparent 1px);
         }
 
-        /* Glassmorphism Elements */
-        .glass-panel {
-            background: rgba(20, 20, 25, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-            border-radius: 24px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
+        .glass-card {
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
         }
-        .glass-panel:hover {
+        .glass-card:hover {
             transform: translateY(-5px);
-            border-color: var(--neon-cyan);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 242, 254, 0.15);
         }
 
-        /* Text Gradients */
-        .text-gradient {
-            background: linear-gradient(to right, var(--neon-cyan), #4facfe);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        /* Image hover effect */
+        .img-zoom { overflow: hidden; border-radius: 16px; }
+        .img-zoom img { transition: transform 0.8s ease; }
+        .img-zoom:hover img { transform: scale(1.1) rotate(-1deg); }
 
-        /* Auth Modal Animation */
-        #auth-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
-        .modal-scale { transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); transform: scale(0.8); }
-        #auth-modal.active .modal-scale { transform: scale(1); }
-
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); }
     </style>
 </head>
 <body class="selection:bg-cyan-500 selection:text-black">
 
     <div class="cyber-grid"></div>
 
-    <nav class="fixed w-full z-50 glass-panel !rounded-none !border-t-0 !border-l-0 !border-r-0 px-6 py-4">
+    <nav class="fixed w-full z-50 glass-card !border-t-0 !border-l-0 !border-r-0 !rounded-none px-6 py-4">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center space-x-3 cursor-pointer">
-                <i class="fa-solid fa-earth-americas text-3xl text-cyan-400 animate-spin-slow"></i>
-                <span class="font-future font-black text-2xl tracking-widest">FIFA<span class="text-gradient">2026</span></span>
-            </div>
-            <div class="hidden lg:flex space-x-8 text-sm font-bold tracking-widest uppercase text-gray-400">
-                <a href="#schedule" class="hover:text-cyan-400 transition">Match Schedule</a>
-                <a href="#gallery" class="hover:text-cyan-400 transition">4K Gallery</a>
-                <a href="#predictions" class="hover:text-cyan-400 transition">AI Predict</a>
-            </div>
-            <div class="flex space-x-4">
-                <button onclick="toggleModal('login')" class="text-sm font-bold hover:text-cyan-400 transition">LOGIN</button>
-                <button onclick="toggleModal('signup')" class="bg-cyan-500 text-black px-6 py-2 rounded-full font-bold text-sm shadow-[0_0_15px_rgba(0,242,254,0.5)] hover:scale-105 transition">
-                    SIGN UP
-                </button>
+            <h1 class="font-future font-black text-2xl tracking-widest">FIFA<span class="text-[#00f2fe]">AI</span></h1>
+            <div class="text-xs font-mono text-cyan-400 bg-cyan-900/30 px-3 py-1 rounded border border-cyan-500/30">
+                <i class="fa-solid fa-bolt mr-2 animate-pulse"></i>104 Matches Loaded
             </div>
         </div>
     </nav>
 
-    <div id="auth-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center invisible opacity-0">
-        <div class="glass-panel p-8 w-full max-w-md modal-scale relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div class="text-center mb-8">
-                <i class="fa-solid fa-fingerprint text-4xl text-cyan-400 mb-3"></i>
-                <h2 id="modal-title" class="text-3xl font-future font-black text-white">SYSTEM <span class="text-cyan-400">LOGIN</span></h2>
-                <p class="text-gray-400 text-sm mt-2">Access the Quantum Prediction Matrix</p>
-            </div>
-
-            <form class="space-y-4" onsubmit="event.preventDefault();">
-                <div id="name-field" class="hidden">
-                    <label class="text-xs font-bold text-gray-400 uppercase">Full Name</label>
-                    <input type="text" class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition mt-1" placeholder="John Doe">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-400 uppercase">Email Address</label>
-                    <input type="email" class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition mt-1" placeholder="user@fifa2026.ai">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-400 uppercase">Secure Password</label>
-                    <input type="password" class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition mt-1" placeholder="••••••••">
-                </div>
-                <button type="submit" id="modal-btn" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-cyan-500/30 transition mt-4">
-                    AUTHENTICATE
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <header class="relative pt-40 pb-20 px-6 text-center z-10">
-        <div data-aos="zoom-in" data-aos-duration="1000">
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-black font-future mb-4 uppercase">
-                THE BIGGEST <br><span class="text-gradient">WORLD CUP</span>
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-8">
-                3 Hosts. 48 Teams. 104 Matches. Track every second of the 2026 FIFA World Cup™ with AI-driven analytics.
-            </p>
-            <div class="flex justify-center space-x-4">
-                <a href="#schedule" class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition">View Schedule</a>
-                <a href="#gallery" class="border border-gray-600 px-8 py-3 rounded-full font-bold hover:border-cyan-400 hover:text-cyan-400 transition">Explore Gallery</a>
-            </div>
-        </div>
+    <header class="pt-32 pb-16 px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-black font-future mb-4 uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+            Ultimate Match Engine
+        </h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">Dynamic JavaScript engine generating 104 AI simulated matches and endless 4K futuristic galleries instantly.</p>
     </header>
 
-    <section id="schedule" class="py-20 px-6 max-w-6xl mx-auto z-10 relative">
-        <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="font-future text-4xl font-black mb-2">OFFICIAL <span class="text-cyan-400">MATCH SCHEDULE</span></h2>
-            <p class="text-gray-500 uppercase tracking-widest text-sm">Dates, Times & Host Cities (AI Simulated Draw)</p>
-        </div>
-
-        <div class="space-y-6">
-            <div class="glass-panel p-6 flex flex-col md:flex-row items-center justify-between border-l-4 border-l-green-500 relative overflow-hidden" data-aos="fade-right">
-                <div class="absolute right-0 top-0 bg-green-500 text-black text-[10px] font-bold px-3 py-1 rounded-bl-lg">OPENING MATCH</div>
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/4 mb-4 md:mb-0 text-center md:text-left">
-                    <span class="text-cyan-400 font-bold">June 11, 2026</span>
-                    <span class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 15:00 CST</span>
-                    <span class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Estadio Azteca, MX</span>
-                </div>
-                
-                <div class="flex items-center justify-center w-full md:w-2/4 space-x-6">
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇲🇽</span>
-                        <h3 class="font-bold text-xl">MEXICO</h3>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <span class="bg-gray-800 px-4 py-2 rounded-lg font-future font-black text-xl">VS</span>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇳🇬</span>
-                        <h3 class="font-bold text-xl text-gray-400">NIGERIA</h3>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4 text-center md:text-right mt-4 md:mt-0">
-                    <button class="text-xs border border-cyan-500 text-cyan-500 px-4 py-2 rounded-full hover:bg-cyan-500 hover:text-black transition">Set Reminder <i class="fa-solid fa-bell ml-1"></i></button>
-                </div>
-            </div>
-
-            <div class="glass-panel p-6 flex flex-col md:flex-row items-center justify-between" data-aos="fade-left">
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/4 mb-4 md:mb-0 text-center md:text-left">
-                    <span class="text-cyan-400 font-bold">June 12, 2026</span>
-                    <span class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 18:00 PST</span>
-                    <span class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> SoFi Stadium, USA</span>
-                </div>
-                <div class="flex items-center justify-center w-full md:w-2/4 space-x-6">
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇺🇸</span>
-                        <h3 class="font-bold text-xl">USA</h3>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <span class="bg-gray-800 px-4 py-2 rounded-lg font-future font-black text-xl">VS</span>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇨🇴</span>
-                        <h3 class="font-bold text-xl text-gray-400">COLOMBIA</h3>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4 text-center md:text-right mt-4 md:mt-0">
-                    <button class="text-xs border border-cyan-500 text-cyan-500 px-4 py-2 rounded-full hover:bg-cyan-500 hover:text-black transition">Set Reminder <i class="fa-solid fa-bell ml-1"></i></button>
-                </div>
-            </div>
-
-            <div class="glass-panel p-6 flex flex-col md:flex-row items-center justify-between" data-aos="fade-right">
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/4 mb-4 md:mb-0 text-center md:text-left">
-                    <span class="text-cyan-400 font-bold">June 15, 2026</span>
-                    <span class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 20:00 EST</span>
-                    <span class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> MetLife Stadium, NY</span>
-                </div>
-                <div class="flex items-center justify-center w-full md:w-2/4 space-x-6">
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇦🇷</span>
-                        <h3 class="font-bold text-xl">ARGENTINA</h3>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <span class="bg-gray-800 px-4 py-2 rounded-lg font-future font-black text-xl">VS</span>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇪🇸</span>
-                        <h3 class="font-bold text-xl text-gray-400">SPAIN</h3>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4 text-center md:text-right mt-4 md:mt-0">
-                    <button class="text-xs border border-cyan-500 text-cyan-500 px-4 py-2 rounded-full hover:bg-cyan-500 hover:text-black transition">Set Reminder <i class="fa-solid fa-bell ml-1"></i></button>
-                </div>
-            </div>
-
-            <div class="glass-panel p-6 flex flex-col md:flex-row items-center justify-between" data-aos="fade-left">
-                <div class="flex flex-col items-center md:items-start w-full md:w-1/4 mb-4 md:mb-0 text-center md:text-left">
-                    <span class="text-cyan-400 font-bold">June 18, 2026</span>
-                    <span class="text-sm text-gray-400"><i class="fa-regular fa-clock mr-1"></i> 16:00 EST</span>
-                    <span class="text-xs text-gray-500 mt-1"><i class="fa-solid fa-location-dot mr-1"></i> Toronto, CAN</span>
-                </div>
-                <div class="flex items-center justify-center w-full md:w-2/4 space-x-6">
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇧🇷</span>
-                        <h3 class="font-bold text-xl">BRAZIL</h3>
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <span class="bg-gray-800 px-4 py-2 rounded-lg font-future font-black text-xl">VS</span>
-                    </div>
-                    <div class="text-center">
-                        <span class="text-5xl block mb-2">🇩🇪</span>
-                        <h3 class="font-bold text-xl text-gray-400">GERMANY</h3>
-                    </div>
-                </div>
-                <div class="w-full md:w-1/4 text-center md:text-right mt-4 md:mt-0">
-                    <button class="text-xs border border-cyan-500 text-cyan-500 px-4 py-2 rounded-full hover:bg-cyan-500 hover:text-black transition">Set Reminder <i class="fa-solid fa-bell ml-1"></i></button>
-                </div>
-            </div>
-            
-            <div class="text-center mt-8">
-                <button class="text-gray-400 hover:text-white underline text-sm tracking-widest uppercase"><i class="fa-solid fa-unlock mr-2"></i>Login to view all 104 matches</button>
-            </div>
-        </div>
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <h2 class="font-future text-2xl font-black mb-8 border-b border-gray-800 pb-4"><i class="fa-solid fa-calendar-days mr-2 text-cyan-400"></i> FULL 104 MATCH TRACKER</h2>
+        
+        <div id="match-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
-    <section id="gallery" class="py-20 bg-black/50 backdrop-blur-md relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="font-future text-4xl font-black mb-2">4K <span class="text-cyan-400">FUTURE VISIONS</span></h2>
-                <p class="text-gray-500 uppercase tracking-widest text-sm">Ultra HD Concepts of 2026</p>
-            </div>
+    <section class="max-w-7xl mx-auto px-6 mb-20">
+        <h2 class="font-future text-2xl font-black mb-8 border-b border-gray-800 pb-4"><i class="fa-solid fa-camera mr-2 text-cyan-400"></i> AI NEURAL GALLERY</h2>
+        
+        <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-4 gap-4"></div>
+    </section>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[250px]">
-                
-                <div class="glass-panel overflow-hidden relative group md:col-span-2 md:row-span-2" data-aos="zoom-in">
-                    <img src="https://images.unsplash.com/photo-1518605368461-1ee7cece2640?auto=format&fit=crop&w=1200&q=100" alt="MetLife Stadium" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-6">
-                        <div>
-                            <span class="bg-cyan-500 text-black text-xs font-bold px-2 py-1 rounded mb-2 inline-block">FINAL VENUE</span>
-                            <h3 class="text-2xl font-bold text-white">MetLife Stadium Evolution</h3>
+    <script>
+        // 1. DYNAMIC MATCH GENERATOR (Simulating 104 Matches without crashing the file)
+        const matchContainer = document.getElementById('match-container');
+        const teams = [
+            { flag: '🇦🇷', name: 'Argentina' }, { flag: '🇧🇷', name: 'Brazil' }, 
+            { flag: '🇫🇷', name: 'France' }, { flag: '🇪🇸', name: 'Spain' },
+            { flag: '🇩🇪', name: 'Germany' }, { flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', name: 'England' },
+            { flag: '🇵🇹', name: 'Portugal' }, { flag: '🇺🇸', name: 'USA' },
+            { flag: '🇲🇽', name: 'Mexico' }, { flag: '🇮🇹', name: 'Italy' }
+        ];
+
+        // Loop to generate exactly 104 matches automatically
+        let matchHTML = '';
+        for(let i = 1; i <= 104; i++) {
+            // Randomly pick teams and scores
+            let team1 = teams[Math.floor(Math.random() * teams.length)];
+            let team2 = teams[Math.floor(Math.random() * teams.length)];
+            while(team1.name === team2.name) { team2 = teams[Math.floor(Math.random() * teams.length)]; } // Prevent same team
+            
+            let score1 = Math.floor(Math.random() * 4);
+            let score2 = Math.floor(Math.random() * 4);
+
+            matchHTML += `
+                <div class="glass-card p-5 relative">
+                    <div class="absolute top-0 right-0 bg-cyan-500/20 text-cyan-400 text-[10px] px-2 py-1 rounded-bl-lg font-bold">MATCH ${i}</div>
+                    <p class="text-xs text-gray-500 mb-3"><i class="fa-regular fa-clock mr-1"></i> June 2026</p>
+                    
+                    <div class="flex justify-between items-center">
+                        <div class="text-center w-2/5">
+                            <span class="text-3xl block">${team1.flag}</span>
+                            <span class="font-bold text-sm">${team1.name}</span>
+                        </div>
+                        
+                        <div class="w-1/5 text-center flex flex-col items-center">
+                            <span class="text-2xl font-black font-future text-cyan-400">${score1} - ${score2}</span>
+                            <span class="text-[9px] text-gray-500 mt-1">FT AI</span>
+                        </div>
+                        
+                        <div class="text-center w-2/5">
+                            <span class="text-3xl block">${team2.flag}</span>
+                            <span class="font-bold text-sm">${team2.name}</span>
                         </div>
                     </div>
                 </div>
+            `;
+        }
+        // Inject all 104 matches into the HTML instantly
+        matchContainer.innerHTML = matchHTML;
 
-                <div class="glass-panel overflow-hidden relative group" data-aos="fade-left" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=100" alt="Cyber Football" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-2">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <h3 class="text-lg font-bold text-cyan-400 font-future border border-cyan-400 px-4 py-2">NEXT-GEN GEAR</h3>
-                    </div>
-                </div>
 
-                <div class="glass-panel overflow-hidden relative group" data-aos="fade-left" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&w=800&q=100" alt="Stadium Lights" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                        <h3 class="text-lg font-bold text-cyan-400 font-future border border-cyan-400 px-4 py-2">NIGHT MATCHES</h3>
-                    </div>
-                </div>
-
-                <div class="glass-panel overflow-hidden relative group" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=800&q=100" alt="World Cup Trophy Concept" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                         <h3 class="text-lg font-bold text-yellow-400 font-future border border-yellow-400 px-4 py-2">THE GLORY</h3>
-                    </div>
-                </div>
-
-                <div class="glass-panel overflow-hidden relative group md:col-span-2" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&q=100" alt="Fan Celebration" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:-rotate-1">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
-                         <h3 class="text-lg font-bold text-white font-future border border-white px-4 py-2">HOLOGRAPHIC FAN ZONES</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-[#020202] py-12 border-t border-gray-900 text-center relative z-10">
-        <h2 class="font-future font-black text-2xl mb-4">FIFA<span class="text-cyan-400">2026</span> SYSTEM</h2>
-        <p class="text-gray-600 text-xs max-w-md mx-auto">Concept UI developed for high-performance and zero-latency simulation. Final schedules are subject to official FIFA announcements.</p>
-    </footer>
-
-    <script>
-        // Initialize Animations
-        AOS.init({ once: true, offset: 50 });
-
-        // Authentication Modal Logic
-        const modal = document.getElementById('auth-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalBtn = document.getElementById('modal-btn');
-        const nameField = document.getElementById('name-field');
-
-        function toggleModal(type) {
-            modal.classList.remove('invisible', 'opacity-0');
-            modal.classList.add('active');
+        // 2. DYNAMIC GALLERY GENERATOR (Loading High-Res Images safely)
+        const galleryContainer = document.getElementById('gallery-container');
+        const searchTerms = ['stadium', 'soccer', 'futuristic+city', 'crowd', 'trophy'];
+        
+        let galleryHTML = '';
+        // Generate 20 Image blocks dynamically (Change 20 to 500 if needed, but 20 is safe for browsers)
+        for(let j = 1; j <= 20; j++) {
+            let term = searchTerms[Math.floor(Math.random() * searchTerms.length)];
+            // Using a dynamic high-quality image API
+            let imgUrl = `https://source.unsplash.com/random/800x600/?${term},neon&sig=${j}`;
             
-            if(type === 'signup') {
-                modalTitle.innerHTML = 'CREATE <span class="text-cyan-400">ACCOUNT</span>';
-                modalBtn.innerText = 'INITIALIZE ACCOUNT';
-                nameField.classList.remove('hidden');
-            } else {
-                modalTitle.innerHTML = 'SYSTEM <span class="text-cyan-400">LOGIN</span>';
-                modalBtn.innerText = 'AUTHENTICATE';
-                nameField.classList.add('hidden');
-            }
+            galleryHTML += `
+                <div class="img-zoom glass-card relative h-48 md:h-64 group">
+                    <img src="${imgUrl}" alt="AI Vision" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="border border-cyan-400 text-cyan-400 px-3 py-1 font-future text-xs font-bold">VISION 2026 - DATA ${j}</span>
+                    </div>
+                </div>
+            `;
         }
-
-        function closeModal() {
-            modal.classList.add('invisible', 'opacity-0');
-            modal.classList.remove('active');
-        }
-
-        // Close modal if clicked outside the box
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        }
+        galleryContainer.innerHTML = galleryHTML;
     </script>
 </body>
 </html>
