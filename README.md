@@ -1,38 +1,39 @@
-# 🏆 FIFA World Cup 2026 - Live Streaming & Premium Hub ⚽
+<div align="center">
+  <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&h=350&q=80" alt="FIFA 2026 Banner">
 
-![FIFA 2026 Banner](https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1200&h=400&q=80)
+  # 🏆 FIFA World Cup 2026 - Premium Live Stream ⚽
+  
+  *The Ultimate Zero-Lag, Free Live Streaming Hub & Match Tracker!*
 
-Welcome to the **Ultimate Premium UI** for broadcasting and tracking the FIFA World Cup 2026! This project is a highly optimized, single-file frontend web application designed to provide users with a flawless, zero-lag experience. 
-
-It features an innovative **"Auth-Gate"** system where users can browse schedules, groups, and legendary galleries for free, but are beautifully prompted to log in when trying to access the 4K Live Player.
-
----
-
-## 🔥 Key Features
-
-* 🚀 **Ultra-Fast Single File Setup:** No heavy frameworks, no bloated libraries. Pure high-performance HTML & Tailwind CSS.
-* 📺 **Premium Auth-Gate Player:** A stunning glass-morphism Login/Sign-up modal that protects the live streaming links.
-* 📅 **Real-time Match Timeline:** Guest users can view live matches, upcoming schedules, and timings without creating an account.
-* 🖼️ **Vintage Legends Gallery:** A high-resolution, interactive picture gallery paying tribute to World Cup legends (Messi, Maradona, Pele, Zidane).
-* 🏟️ **Venue Guide:** Quick facts and stunning imagery of the iconic 2026 stadiums across the USA, Mexico, and Canada.
-* 📱 **100% Responsive Layout:** Looks beautiful on desktops, tablets, and mobile devices.
+  [![Watch Live](https://img.shields.io/badge/🔴_WATCH_LIVE-FREE_STREAMING-red?style=for-the-badge)](https://iac1.github.io/fifa-worldcup-2026-live/)
+  [![Developer Info](https://img.shields.io/badge/Developer-i__f__t__uu-blue?style=for-the-badge&logo=instagram)](https://instagram.com/i_f_t_uu)
+</div>
 
 ---
 
-## 🛠️ Technology Stack
+## 🔴 Free Live Link (সরাসরি খেলা দেখুন)
+কোনো ঝামেলা ছাড়াই সম্পূর্ণ ফ্রিতে ২০২৬ ফিফা বিশ্বকাপ লাইভ দেখতে এবং শিডিউল জানতে নিচের লিংকে ক্লিক করুন:
 
-* **HTML5** - Semantic and clean structure
-* **Tailwind CSS (CDN)** - For lightning-fast, premium styling and animations
-* **Vanilla JS** - For smooth DOM manipulation and modal handling
-* **FontAwesome** - For high-quality, scalable vector icons
-* **Google Fonts (Poppins)** - For ultra-clean and modern typography
+🌐 **👉 [FIFA World Cup 2026 Free Live Link - Click Here to Watch](https://iac1.github.io/fifa-worldcup-2026-live/) 👈**
 
 ---
 
-## 🚀 How to Run (Installation)
+## 🔥 Key Highlights & Features
 
-Since this is a lightweight frontend project, you don't need any complex setup, Node.js, or NPM!
+* 🚀 **Lightning Fast UI:** No heavy loading time. Pure HTML & Tailwind CSS magic.
+* 📺 **Premium Auth-Gate Player:** A beautifully designed glass-morphism gateway for secure 4K streaming access.
+* 📅 **Real-time Match Timeline:** Track live matches, upcoming schedules, and stadium details without an account.
+* 🖼️ **Vintage Legends Gallery:** High-resolution picture gallery of World Cup legends like Messi, Maradona, Pele, and Zidane.
+* 📱 **100% Mobile Responsive:** Enjoy the ultimate stadium vibe directly from your phone or PC.
 
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/YOUR-USERNAME/fifa-worldcup-2026-live.git](https://github.com/YOUR-USERNAME/fifa-worldcup-2026-live.git)
+---
+
+## 👨‍💻 Developer & Contact
+
+Designed and developed with passion for pure UI/UX and Football! Have questions, suggestions, or just want to connect? Hit me up on Instagram:
+
+📸 **Instagram:** [@i_f_t_uu](https://instagram.com/i_f_t_uu)
+🐙 **GitHub:** [IAC1](https://github.com/IAC1)
+
+---
+*Support the project by giving it a ⭐ **Star** if you love the UI!*
