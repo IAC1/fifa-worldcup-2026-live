@@ -1,459 +1,387 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA World Cup 2026 - Live & Premium Hub</title>
+    <title>FIFA World Cup 2026™ | Premium Live Stream</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            background-color: #050505; /* Deep OLED Black */
+            color: #f8fafc;
             scroll-behavior: smooth;
         }
+        /* Netflix/Bioscope+ Style Glass Navbar */
         .glass-nav {
-            background: rgba(11, 15, 25, 0.85);
-            backdrop-filter: blur(12px);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+            backdrop-filter: blur(8px);
+            transition: background 0.3s ease;
+        }
+        .glass-nav.scrolled {
+            background: rgba(5, 5, 5, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .premium-gradient-text {
-            background: linear-gradient(135deg, #00ffcc, #0077ff, #ff007f);
+        /* Premium Text Gradients */
+        .text-gradient {
+            background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .card-premium {
-            background: rgba(22, 28, 45, 0.6);
-            backdrop-filter: blur(10px);
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* VOD Card Styling */
+        .vod-card {
+            background: rgba(20, 20, 20, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .card-premium:hover {
-            transform: translateY(-6px);
-            border-color: rgba(0, 255, 204, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 255, 204, 0.08);
+        .vod-card:hover {
+            transform: scale(1.02) translateY(-5px);
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.1);
+            z-index: 10;
         }
-        /* Custom Custom Scrollbar for speed and style */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0f19;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1f293d;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00ffcc;
-        }
+        /* Ultra-fast custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body class="overflow-x-hidden selection:bg-[#00f2fe] selection:text-black">
 
-    <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-trophy text-2xl text-yellow-400 animate-pulse"></i>
-            <span class="text-xl font-extrabold tracking-wider text-white">FIFA <span class="text-[#00ffcc]">2026</span> LIVE</span>
-        </div>
-        
-        <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
-            <a href="#home" class="text-[#00ffcc] hover:text-white transition cursor-pointer">হোম</a>
-            <a href="#schedule" class="text-gray-400 hover:text-[#00ffcc] transition cursor-pointer">ম্যাচ শিডিউল</a>
-            <a href="#groups" class="text-gray-400 hover:text-[#00ffcc] transition cursor-pointer">গ্রুপ সমূহ</a>
-            <a href="#history" class="text-gray-400 hover:text-[#00ffcc] transition cursor-pointer">মেমোরিজ গ্যালারি</a>
-            <a href="#stadiums" class="text-gray-400 hover:text-[#00ffcc] transition cursor-pointer">ভেন্যু গাইড</a>
+    <nav id="navbar" class="glass-nav fixed top-0 left-0 w-full z-50 px-6 lg:px-12 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-8">
+            <a href="#" class="flex items-center space-x-2">
+                <i class="fa-solid fa-trophy text-2xl text-yellow-500"></i>
+                <span class="text-2xl font-black tracking-tighter">FIFA<span class="text-[#00f2fe]">26</span></span>
+            </a>
+            <div class="hidden md:flex space-x-6 text-sm font-semibold text-gray-300 tracking-wide">
+                <a href="#home" class="hover:text-white transition">Home</a>
+                <a href="#live" class="hover:text-white transition">Live Matches</a>
+                <a href="#groups" class="hover:text-white transition">Groups & Flags</a>
+                <a href="#gallery" class="hover:text-white transition">Moments</a>
+            </div>
         </div>
 
         <div class="flex items-center space-x-4">
-            <button onclick="toggleAuthModal('login')" class="text-sm font-medium text-gray-300 hover:text-white transition cursor-pointer">লগইন</button>
-            <button onclick="toggleAuthModal('signup')" class="bg-gradient-to-r from-[#00ffcc] to-[#0077ff] text-gray-900 font-semibold px-5 py-2 rounded-full text-sm shadow-lg hover:opacity-90 transition cursor-pointer">সাইন আপ</button>
+            <button onclick="toggleAuthModal('login')" class="hidden md:block text-sm font-bold text-gray-300 hover:text-white transition">Sign In</button>
+            <button onclick="toggleAuthModal('signup')" class="bg-white text-black font-bold px-6 py-2.5 rounded-full text-sm hover:bg-gray-200 transition shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                GET PREMIUM
+            </button>
         </div>
     </nav>
 
-    <section id="home" class="relative pt-32 pb-20 px-6 max-w-7xl mx-auto flex flex-col items-center text-center min-h-screen justify-center">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-10 pointer-events-none"></div>
-        
-        <span class="bg-blue-900/40 text-[#00ffcc] border border-blue-500/30 text-xs uppercase tracking-widest font-bold px-4 py-1.5 rounded-full mb-6 relative z-10">
-            <i class="fa-solid fa-satellite-dish mr-2 text-red-500 animate-ping"></i> ৩টি আয়োজক দেশ • ৪৮টি সেরা দল
-        </span>
-        <h1 class="text-4xl md:text-7xl font-black tracking-tight text-white mb-6 leading-tight relative z-10">
-            ফিফা ওয়ার্ল্ড কাপ ২০২৬ <br>
-            <span class="premium-gradient-text">সরাসরি ও সম্পূর্ণ ফ্রি ব্রাউজিং</span>
-        </h1>
-        <p class="text-gray-400 text-base md:text-xl max-w-3xl mb-10 leading-relaxed relative z-10">
-            কোনো প্রকার অ্যাকাউন্ট খোলার ঝামেলা ছাড়াই দেখে নিন কখন কার খেলা, লাইভ পয়েন্ট টেবিল এবং স্টেডিয়াম গাইড। লাইভ হাই-ডেফিনিশন স্ট্রিমিং চ্যানেল চালু করতে কেবল প্রিমিয়াম প্লেয়ারে চাপ দিন।
-        </p>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full max-w-4xl mt-4 relative z-10">
-            <div class="card-premium p-6 rounded-2xl text-center">
-                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">আজকের হাইলাইট ম্যাচ</p>
-                <p class="text-lg font-bold text-white">মেক্সিকো বনাম সাউথ আফ্রিকা</p>
-            </div>
-            <div class="card-premium p-6 rounded-2xl text-center">
-                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">মোট ম্যাচ সংখ্যা</p>
-                <p class="text-2xl font-black text-[#00ffcc]">১০৪ টি</p>
-            </div>
-            <div class="card-premium p-6 rounded-2xl text-center">
-                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">স্টেডিয়াম ভেন্যু</p>
-                <p class="text-2xl font-black text-blue-400">১৬ টি</p>
-            </div>
-            <div class="card-premium p-6 rounded-2xl text-center">
-                <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">টুর্নামেন্ট স্ট্যাটাস</p>
-                <p class="text-sm font-bold bg-green-500/20 text-green-400 px-3 py-1 rounded-full inline-block">চলমান (Live)</p>
-            </div>
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 px-6">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1518605368461-1ee7cece2640?auto=format&fit=crop&w=1920&q=80" alt="Stadium" class="w-full h-full object-cover opacity-30">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505]"></div>
         </div>
 
-        <div class="mt-12 flex flex-wrap justify-center gap-4 relative z-10">
-            <a href="#schedule" class="bg-white text-gray-900 font-bold px-8 py-3.5 rounded-xl shadow-xl hover:bg-gray-100 transition flex items-center cursor-pointer">
-                <i class="fa-solid fa-calendar-days mr-2"></i> ফুল শিডিউল দেখুন
-            </a>
-            <button onclick="toggleAuthModal('login')" class="bg-gray-800/80 border border-gray-700 text-white font-bold px-8 py-3.5 rounded-xl hover:bg-gray-700 transition flex items-center cursor-pointer">
-                <i class="fa-solid fa-play text-red-500 mr-2"></i> লাইভ স্ট্রিমিং প্লেয়ার
-            </button>
+        <div class="relative z-10 text-center max-w-5xl mx-auto flex flex-col items-center">
+            <div class="mb-6 inline-flex items-center space-x-2 bg-red-600/20 border border-red-500/30 px-4 py-1.5 rounded-full backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="text-red-400 text-xs font-bold tracking-widest uppercase">Live Broadcasting Now</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-black tracking-tighter mb-4 leading-tight">
+                EXPERIENCE <br>
+                <span class="text-gradient">FOOTBALL</span> GLORY
+            </h1>
+            
+            <p class="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mb-10">
+                The world's greatest tournament is here. Stream all 104 matches of the FIFA World Cup 2026™ in stunning 4K Ultra-HD. Zero lag. Pure adrenaline.
+            </p>
+
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <button onclick="toggleAuthModal('signup')" class="bg-gradient-to-r from-[#00f2fe] to-[#4facfe] text-black font-black px-10 py-4 rounded-full text-lg hover:scale-105 transition shadow-[0_0_30px_rgba(0,242,254,0.4)] flex items-center justify-center">
+                    <i class="fa-solid fa-play mr-3"></i> Watch Live Now
+                </button>
+                <a href="#live" class="bg-gray-800/80 backdrop-blur border border-gray-700 text-white font-bold px-10 py-4 rounded-full text-lg hover:bg-gray-700 transition flex items-center justify-center">
+                    <i class="fa-solid fa-calendar mr-3"></i> View Schedule
+                </a>
+            </div>
         </div>
     </section>
 
-    <section id="schedule" class="py-24 px-6 max-w-7xl mx-auto border-t border-gray-800">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12">
-            <div>
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-3">ম্যাচ ডে টাইমলাইন</h2>
-                <p class="text-gray-400">লগইন করার আগেই রিয়েল টাইমে দেখে নিন কোন স্টেডিয়ামে কখন মাঠে নামছে দলগুলো</p>
-            </div>
-            <div class="mt-6 md:mt-0 flex space-x-2 bg-gray-900/60 p-1.5 rounded-xl border border-gray-800">
-                <button class="bg-[#1f293d] text-[#00ffcc] text-xs font-bold px-4 py-2 rounded-lg cursor-pointer">সব ম্যাচ</button>
-                <button onclick="toggleAuthModal('login')" class="text-gray-400 hover:text-white text-xs font-bold px-4 py-2 rounded-lg transition cursor-pointer"><i class="fa-solid fa-star text-yellow-400 mr-1"></i> মাই টিম</button>
-            </div>
-        </div>
+    <section id="live" class="py-20 px-6 lg:px-12 relative z-10 bg-[#050505]">
+        <h2 class="text-3xl font-black mb-2">Live & Upcoming Matches</h2>
+        <p class="text-gray-500 font-medium mb-8">Stream directly from the stadium to your screen.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="vod-card p-6 group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-red-800"></div>
+                <div class="flex justify-between items-center mb-6">
+                    <span class="bg-red-600 text-white text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest animate-pulse">Live</span>
+                    <span class="text-gray-400 text-xs font-bold">Group A • Match 01</span>
+                </div>
+                <div class="flex justify-between items-center mb-8">
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 shadow-lg drop-shadow-2xl">🇲🇽</div>
+                        <h3 class="font-bold text-lg">MEX</h3>
+                    </div>
+                    <div class="w-1/3 text-center">
+                        <span class="text-3xl font-black text-[#00f2fe]">2 - 1</span>
+                        <p class="text-[10px] text-red-500 font-bold mt-1">78' MIN</p>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 drop-shadow-2xl">🇿🇦</div>
+                        <h3 class="font-bold text-lg">RSA</h3>
+                    </div>
+                </div>
+                <button onclick="toggleAuthModal('login')" class="w-full bg-white/10 hover:bg-white hover:text-black text-white font-bold py-3 rounded-xl transition flex items-center justify-center">
+                    <i class="fa-solid fa-tv mr-2"></i> Enter Broadcast
+                </button>
+            </div>
+
+            <div class="vod-card p-6 group">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="bg-gray-800 text-gray-300 text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">Upcoming</span>
+                    <span class="text-gray-400 text-xs font-bold">Group C • Today 20:00</span>
+                </div>
+                <div class="flex justify-between items-center mb-8">
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 drop-shadow-2xl">🇺🇸</div>
+                        <h3 class="font-bold text-lg">USA</h3>
+                    </div>
+                    <div class="w-1/3 text-center">
+                        <span class="text-xl font-black text-gray-500">VS</span>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 drop-shadow-2xl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
+                        <h3 class="font-bold text-lg">ENG</h3>
+                    </div>
+                </div>
+                <button onclick="toggleAuthModal('login')" class="w-full bg-[#00f2fe]/10 text-[#00f2fe] hover:bg-[#00f2fe] hover:text-black font-bold py-3 rounded-xl transition flex items-center justify-center">
+                    <i class="fa-solid fa-bell mr-2"></i> Set Reminder
+                </button>
+            </div>
+
+            <div class="vod-card p-6 group">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="bg-gray-800 text-gray-300 text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest">Tomorrow</span>
+                    <span class="text-gray-400 text-xs font-bold">Group F • 15:00</span>
+                </div>
+                <div class="flex justify-between items-center mb-8">
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 drop-shadow-2xl">🇦🇷</div>
+                        <h3 class="font-bold text-lg">ARG</h3>
+                    </div>
+                    <div class="w-1/3 text-center">
+                        <span class="text-xl font-black text-gray-500">VS</span>
+                    </div>
+                    <div class="text-center w-1/3">
+                        <div class="text-5xl mb-2 drop-shadow-2xl">🇪🇸</div>
+                        <h3 class="font-bold text-lg">ESP</h3>
+                    </div>
+                </div>
+                <button onclick="toggleAuthModal('login')" class="w-full bg-[#00f2fe]/10 text-[#00f2fe] hover:bg-[#00f2fe] hover:text-black font-bold py-3 rounded-xl transition flex items-center justify-center">
+                    <i class="fa-solid fa-bell mr-2"></i> Set Reminder
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="groups" class="py-20 px-6 lg:px-12 bg-gradient-to-b from-[#050505] to-[#0a0a0a]">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-3xl font-black mb-2">Tournament Groups</h2>
+                <p class="text-gray-500 font-medium">Top global teams battling for the ultimate glory.</p>
+            </div>
+            <button class="text-sm font-bold text-[#00f2fe] hover:text-white transition">View Full Table <i class="fa-solid fa-arrow-right ml-1"></i></button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-[#111] border border-gray-800 rounded-2xl p-5 hover:border-gray-600 transition">
+                <h3 class="font-black text-xl text-gray-200 mb-4 border-b border-gray-800 pb-2">Group A</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇲🇽</span><span class="font-semibold text-white">Mexico</span></div><span class="text-xs font-bold bg-gray-800 px-2 py-1 rounded text-gray-300">3 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇿🇦</span><span class="font-semibold text-gray-400">South Africa</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇰🇷</span><span class="font-semibold text-gray-400">South Korea</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇨🇿</span><span class="font-semibold text-gray-400">Czechia</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                </ul>
+            </div>
+            <div class="bg-[#111] border border-gray-800 rounded-2xl p-5 hover:border-gray-600 transition">
+                <h3 class="font-black text-xl text-gray-200 mb-4 border-b border-gray-800 pb-2">Group B</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇧🇷</span><span class="font-semibold text-white">Brazil</span></div><span class="text-xs font-bold bg-gray-800 px-2 py-1 rounded text-gray-300">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇨🇭</span><span class="font-semibold text-white">Switzerland</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇯🇵</span><span class="font-semibold text-white">Japan</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇨🇦</span><span class="font-semibold text-white">Canada</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                </ul>
+            </div>
+            <div class="bg-[#111] border border-gray-800 rounded-2xl p-5 hover:border-gray-600 transition">
+                <h3 class="font-black text-xl text-gray-200 mb-4 border-b border-gray-800 pb-2">Group C</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇫🇷</span><span class="font-semibold text-white">France</span></div><span class="text-xs font-bold bg-gray-800 px-2 py-1 rounded text-gray-300">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇩🇪</span><span class="font-semibold text-white">Germany</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇳🇬</span><span class="font-semibold text-white">Nigeria</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇺🇸</span><span class="font-semibold text-white">USA</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                </ul>
+            </div>
+            <div class="bg-[#111] border border-gray-800 rounded-2xl p-5 hover:border-gray-600 transition">
+                <h3 class="font-black text-xl text-gray-200 mb-4 border-b border-gray-800 pb-2">Group D</h3>
+                <ul class="space-y-3">
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇵🇹</span><span class="font-semibold text-white">Portugal</span></div><span class="text-xs font-bold bg-gray-800 px-2 py-1 rounded text-gray-300">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇮🇹</span><span class="font-semibold text-white">Italy</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇺🇾</span><span class="font-semibold text-white">Uruguay</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                    <li class="flex items-center justify-between"><div class="flex items-center space-x-3"><span class="text-2xl">🇸🇳</span><span class="font-semibold text-white">Senegal</span></div><span class="text-xs font-bold text-gray-600">0 PTS</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 px-6 lg:px-12 bg-[#050505]">
+        <h2 class="text-3xl font-black mb-2 text-center">Legendary Moments</h2>
+        <p class="text-gray-500 font-medium mb-10 text-center">Relive the greatest emotions in football history.</p>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             
-            <div class="card-premium p-6 rounded-3xl relative overflow-hidden group">
-                <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] font-black px-2.5 py-1 rounded-md tracking-widest uppercase flex items-center animate-pulse">
-                    <span class="w-1.5 h-1.5 bg-white rounded-full mr-1.5"></span> LIVE NOW
+            <div class="group relative overflow-hidden rounded-xl h-60 col-span-2 md:col-span-2 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80" alt="Victory" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <span class="bg-yellow-500 text-black text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest mb-2 inline-block">The GOAT</span>
+                    <h3 class="text-xl font-bold text-white">Qatar 2022 Glory</h3>
                 </div>
-                <p class="text-xs font-semibold text-blue-400 uppercase tracking-wider mb-4">গ্রুপ A • ম্যাচ ০১</p>
-                
-                <div class="flex flex-col space-y-4 my-6">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇲🇽</span>
-                            <span class="font-bold text-white text-lg">মেক্সিকো</span>
-                        </div>
-                        <span class="text-xl font-black text-[#00ffcc]">১</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇿🇦</span>
-                            <span class="font-bold text-white text-lg">সাউথ আফ্রিকা</span>
-                        </div>
-                        <span class="text-xl font-black text-[#00ffcc]">১</span>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-800/80 pt-4 mt-4 flex justify-between items-center text-xs text-gray-400">
-                    <div>
-                        <p class="font-medium text-gray-300"><i class="fa-solid fa-landmark mr-1"></i> এস্তাদিও আসতেকা</p>
-                        <p class="mt-0.5">মেক্সিকো সিটি</p>
-                    </div>
-                    <button onclick="toggleAuthModal('login')" class="bg-[#00ffcc]/10 hover:bg-[#00ffcc] text-[#00ffcc] hover:text-gray-950 font-bold px-4 py-2 rounded-xl transition flex items-center cursor-pointer">
-                        <i class="fa-solid fa-play mr-1.5 text-xs"></i> স্ট্রিম করুন
-                    </button>
+                <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                    <i class="fa-solid fa-circle-play text-5xl text-white/80"></i>
                 </div>
             </div>
 
-            <div class="card-premium p-6 rounded-3xl relative overflow-hidden group">
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">গ্রুপ A • ম্যাচ ০২</p>
-                
-                <div class="flex flex-col space-y-4 my-6">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇰🇷</span>
-                            <span class="font-bold text-white text-lg">সাউথ কোরিয়া</span>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-500">vs</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇨🇿</span>
-                            <span class="font-bold text-white text-lg">চেক প্রজাতন্ত্র</span>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-500"></span>
-                    </div>
-                </div>
-
-                <div class="border-t border-gray-800/80 pt-4 mt-4 flex justify-between items-center text-xs text-gray-400">
-                    <div>
-                        <p class="font-medium text-gray-300"><i class="fa-solid fa-clock mr-1 text-[#00ffcc]"></i> আজ রাত ০৮:০০ টা</p>
-                        <p class="mt-0.5">এস্তাদিও অ্যাক্রন, গুয়াদালাহারা</p>
-                    </div>
-                    <button onclick="toggleAuthModal('login')" class="bg-gray-800 text-gray-300 font-bold px-4 py-2 rounded-xl hover:bg-gray-700 transition cursor-pointer">
-                        রিমাইন্ডার
-                    </button>
+            <div class="group relative overflow-hidden rounded-xl h-60 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80" alt="Stadium" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 filter grayscale group-hover:grayscale-0">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-sm font-bold text-white">Classic Arenas</h3>
                 </div>
             </div>
 
-            <div class="card-premium p-6 rounded-3xl relative overflow-hidden group">
-                <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-4">গ্রুপ B • ম্যাচ ০৩</p>
-                
-                <div class="flex flex-col space-y-4 my-6">
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇨🇦</span>
-                            <span class="font-bold text-white text-lg">কানাডা</span>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-500">vs</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-2xl">🇧🇦</span>
-                            <span class="font-bold text-white text-lg">বসনিয়া ও হার্জেগোভিনা</span>
-                        </div>
-                        <span class="text-sm font-semibold text-gray-500"></span>
-                    </div>
+            <div class="group relative overflow-hidden rounded-xl h-60 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&w=600&q=80" alt="Fans" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-sm font-bold text-white">Fan Emotions</h3>
                 </div>
+            </div>
 
-                <div class="border-t border-gray-800/80 pt-4 mt-4 flex justify-between items-center text-xs text-gray-400">
-                    <div>
-                        <p class="font-medium text-gray-300"><i class="fa-solid fa-clock mr-1 text-blue-400"></i> আগামীকাল বিকাল ০৩:০০ টা</p>
-                        <p class="mt-0.5">টরন্টো স্টেডিয়াম, কানাডা</p>
-                    </div>
-                    <button onclick="toggleAuthModal('login')" class="bg-gray-800 text-gray-300 font-bold px-4 py-2 rounded-xl hover:bg-gray-700 transition cursor-pointer">
-                        রিমাইন্ডার
-                    </button>
+            <div class="group relative overflow-hidden rounded-xl h-60 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=600&q=80" alt="Ball" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-sm font-bold text-white">The Beautiful Game</h3>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-xl h-60 col-span-2 md:col-span-2 cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=800&q=80" alt="History" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <span class="bg-[#00f2fe] text-black text-[10px] font-black px-2 py-1 rounded uppercase tracking-widest mb-2 inline-block">Vintage</span>
+                    <h3 class="text-xl font-bold text-white">World Cup Heritage</h3>
+                </div>
+            </div>
+
+            <div class="group relative overflow-hidden rounded-xl h-60 cursor-pointer hidden md:block">
+                <img src="https://images.unsplash.com/photo-1551280857-2b9ebf411779?auto=format&fit=crop&w=600&q=80" alt="Trophy" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80"></div>
+                <div class="absolute bottom-4 left-4">
+                    <h3 class="text-sm font-bold text-white">The Golden Dream</h3>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section id="history" class="py-24 bg-gradient-to-b from-[#0b0f19] via-[#0f1626] to-[#0b0f19] px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-black text-white mb-4">অতীত ফিফা বিশ্বকাপের সোনালী ফ্রেম</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">ইতিহাসের সেরা কিংবদন্তিদের সেই আইকনিক ছবি ও ইমোশন যা ফুটবলকে বানিয়েছে অনন্য। প্রিমিয়াম হাই-রেজোলিউশন লুক গ্যালারি।</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <div class="card-premium rounded-3xl overflow-hidden group">
-                    <div class="h-64 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80" alt="Football Glory" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-4 left-4 bg-yellow-500 text-gray-950 font-black text-[10px] px-2 py-0.5 rounded-md">কাতার ২০২২</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg mb-1">লিওনেল মেসি</h3>
-                        <p class="text-xs text-gray-400">আর্জেন্টিনার ৩৬ বছরের অপেক্ষার অবসান ঘটিয়ে সোনালী ট্রফি উঁচিয়ে ধরার অবিস্মরণীয় মুহূর্ত।</p>
-                    </div>
-                </div>
-
-                <div class="card-premium rounded-3xl overflow-hidden group">
-                    <div class="h-64 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="Classic Match Vibe" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-4 left-4 bg-blue-500 text-white font-black text-[10px] px-2 py-0.5 rounded-md">মেক্সিকো ১৯৮৬</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg mb-1">দিয়েগো ম্যারাডোনা</h3>
-                        <p class="text-xs text-gray-400">শতাব্দীর সেরা একক ড্রিবলিং গোল এবং "হ্যান্ড অফ গড" খ্যাত ইংল্যান্ড বধের ঐতিহাসিক ম্যাচ ব্যাকগ্রাউন্ড।</p>
-                    </div>
-                </div>
-
-                <div class="card-premium rounded-3xl overflow-hidden group">
-                    <div class="h-64 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=600&q=80" alt="Vintage Ball Vibe" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-4 left-4 bg-green-500 text-white font-black text-[10px] px-2 py-0.5 rounded-md">ব্রাজিল ১৯৭০</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg mb-1">কিংবদন্তি পেলে</h3>
-                        <p class="text-xs text-gray-400">বিশ্ব ফুটবলের একমাত্র রাজা হিসেবে ৩টি বিশ্বকাপ জয়ের ট্রিপল ক্রাউন রেকর্ড গড়ার সোনালী অধ্যায়।</p>
-                    </div>
-                </div>
-
-                <div class="card-premium rounded-3xl overflow-hidden group">
-                    <div class="h-64 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1431324155629-1a6edd17515d?auto=format&fit=crop&w=600&q=80" alt="World Football" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-transparent to-transparent"></div>
-                        <span class="absolute bottom-4 left-4 bg-purple-500 text-white font-black text-[10px] px-2 py-0.5 rounded-md">ফ্রান্স ১৯৯৮</span>
-                    </div>
-                    <div class="p-5">
-                        <h3 class="font-bold text-white text-lg mb-1">জিনেদিন জিদান</h3>
-                        <p class="text-xs text-gray-400">ফাইনালে জোড়া হেডে ব্রাজিলকে পরাস্ত করে ফরাসিদের প্রথম বিশ্বজয়ের মাস্টারক্লাস পারফরম্যান্স।</p>
-                    </div>
-                </div>
-
-            </div>
+    <footer class="border-t border-gray-900 bg-black py-10 px-6 text-center">
+        <h2 class="text-xl font-black tracking-tighter mb-4 text-gray-500">FIFA<span class="text-[#00f2fe]">26</span> LIVE</h2>
+        <p class="text-xs text-gray-600 max-w-md mx-auto mb-6">Experience the global standard of sports broadcasting. 4K Ultra-HD streaming, real-time stats, and multi-device support.</p>
+        <div class="flex justify-center space-x-6 text-gray-500">
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-x-twitter text-lg"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-instagram text-lg"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fa-brands fa-youtube text-lg"></i></a>
         </div>
-    </section>
+        <p class="text-[10px] text-gray-700 mt-8">&copy; 2026 Premium FIFA Hub. Not officially affiliated with FIFA.</p>
+    </footer>
 
-    <section id="groups" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4">গ্রুপ বিন্যাস (Groups 2026)</h2>
-            <p class="text-gray-400 max-w-xl mx-auto">নতুন ফরম্যাটে মোট ১২টি গ্রুপে বিন্যস্ত করা হয়েছে দলগুলোকে। একনজরে দেখে নিন শুরুর ৩টি শক্তিশালী গ্রুপ গ্রিড।</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card-premium p-6 rounded-3xl">
-                <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-800">
-                    <h3 class="font-extrabold text-[#00ffcc] text-lg">Group A</h3>
-                    <span class="text-xs text-gray-500 font-medium">৪টি দল</span>
-                </div>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between text-white font-medium"><span>🇲🇽 মেক্সিকো</span> <span class="text-[#00ffcc] font-bold">১ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-white font-medium"><span>🇿🇦 সাউথ আফ্রিকা</span> <span class="text-[#00ffcc] font-bold">১ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-400"><span>🇰🇷 সাউথ কোরিয়া</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-400"><span>🇨🇿 চেক প্রজাতন্ত্র</span> <span>০ পয়েন্ট</span></li>
-                </ul>
-            </div>
-
-            <div class="card-premium p-6 rounded-3xl">
-                <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-800">
-                    <h3 class="font-extrabold text-blue-400 text-lg">Group B</h3>
-                    <span class="text-xs text-gray-500 font-medium">৪টি দল</span>
-                </div>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between text-gray-300"><span>🇨🇦 কানাডা</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🇧🇦 বসনিয়া</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🇶🇦 কাতার</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🇨🇭 সুইজারল্যান্ড</span> <span>০ পয়েন্ট</span></li>
-                </ul>
-            </div>
-
-            <div class="card-premium p-6 rounded-3xl">
-                <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-800">
-                    <h3 class="font-extrabold text-purple-400 text-lg">Group C</h3>
-                    <span class="text-xs text-gray-500 font-medium">৪টি দল</span>
-                </div>
-                <ul class="space-y-3 text-sm">
-                    <li class="flex justify-between text-gray-300"><span>🇧🇷 ব্রাজিল</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🇲🇦 মরক্কো</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🇭🇹 হাইতি</span> <span>০ পয়েন্ট</span></li>
-                    <li class="flex justify-between text-gray-300"><span>🏴󠁧󠁢󠁳󠁣󠁴󠁿 স্কটল্যান্ড</span> <span>০ পয়েন্ট</span></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <div id="authModal" class="fixed inset-0 z-50 bg-gray-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
-        <div class="bg-[#111827] border border-gray-800 rounded-3xl w-full max-w-md overflow-hidden shadow-2xl relative transform scale-95 transition-transform duration-300">
+    <div id="authModal" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-[#0a0a0a] border border-gray-800 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] relative transform scale-95 transition-transform duration-300">
             
-            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl transition cursor-pointer">
+            <button onclick="closeAuthModal()" class="absolute top-5 right-5 text-gray-500 hover:text-white text-xl transition z-10">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div class="flex border-b border-gray-800 text-center">
-                <button id="tabLoginBtn" onclick="switchAuthTab('login')" class="w-1/2 py-4 font-bold text-white border-b-2 border-[#00ffcc] cursor-pointer">লগইন করুন</button>
-                <button id="tabSignupBtn" onclick="switchAuthTab('signup')" class="w-1/2 py-4 font-bold text-gray-400 hover:text-white transition cursor-pointer">নতুন অ্যাকাউন্ট</button>
+            <div class="h-32 bg-[url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=600&q=80')] bg-cover bg-center relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent"></div>
+                <div class="absolute bottom-2 left-6 text-2xl font-black text-white">Unlock <span class="text-gradient">Premium</span></div>
             </div>
 
-            <div class="p-8">
-                <div class="mb-6 bg-blue-950/50 border border-blue-900/50 p-3.5 rounded-xl flex items-start space-x-3">
-                    <i class="fa-solid fa-circle-info text-blue-400 mt-0.5 text-sm"></i>
-                    <p class="text-xs text-gray-300 leading-relaxed">
-                        লাইভ শিডিউল ও ম্যাচ ট্র্যাকিং সবার জন্য উন্মুক্ত। কেবল **৪K লাইভ স্ট্রিমিং ও বাফারিং-ফ্রি প্রিমিয়াম প্লেয়ার** চালু করতে ফ্রিতে সিকিউর অ্যাকাউন্ট সাইন-ইন সম্পন্ন করুন।
-                    </p>
+            <div class="px-8 pb-8 pt-2">
+                <div class="flex space-x-6 border-b border-gray-800 mb-6">
+                    <button id="tabLoginBtn" onclick="switchAuthTab('login')" class="pb-3 text-sm font-bold text-white border-b-2 border-[#00f2fe] transition">Sign In</button>
+                    <button id="tabSignupBtn" onclick="switchAuthTab('signup')" class="pb-3 text-sm font-bold text-gray-500 hover:text-white transition">Create Account</button>
                 </div>
 
                 <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-4">
                     <div>
-                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">ইমেইল অ্যাড্রেস</label>
-                        <input type="email" placeholder="example@email.com" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00ffcc] transition">
+                        <input type="email" placeholder="Email address" required class="w-full bg-[#141414] border border-gray-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#00f2fe] focus:bg-black transition placeholder-gray-600">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">পাসওয়ার্ড</label>
-                        <input type="password" placeholder="••••••••" required class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00ffcc] transition">
+                        <input type="password" placeholder="Password" required class="w-full bg-[#141414] border border-gray-800 rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#00f2fe] focus:bg-black transition placeholder-gray-600">
                     </div>
                     
-                    <div id="signupOnlyFields" class="hidden space-y-4 pt-1">
-                        <div>
-                            <label class="block text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">প্রিয় দল (ঐচ্ছিক)</label>
-                            <select class="w-full bg-gray-900 border border-gray-800 rounded-xl px-4 py-3 text-sm text-gray-400 focus:outline-none focus:border-[#00ffcc] transition cursor-pointer">
-                                <option value="">নির্বাচন করুন...</option>
-                                <option value="argentina">আর্জেন্টিনা</option>
-                                <option value="brazil">ব্রাজিল</option>
-                                <option value="germany">জার্মানি</option>
-                                <option value="france">ফ্রান্স</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-gradient-to-r from-[#00ffcc] to-[#0077ff] text-gray-950 font-extrabold py-3.5 rounded-xl mt-6 shadow-lg shadow-blue-500/10 hover:opacity-95 transition tracking-wider uppercase text-xs cursor-pointer">
-                        <span id="submitBtnText">প্লেয়ার অ্যাক্টিভেট করুন</span>
+                    <button type="submit" class="w-full bg-white text-black font-extrabold py-3.5 rounded-xl mt-6 hover:bg-gray-200 transition tracking-wide text-sm flex justify-center items-center">
+                        <i class="fa-solid fa-lock mr-2 text-xs"></i> <span id="submitBtnText">Access 4K Player</span>
                     </button>
                 </form>
 
-                <div class="mt-6 text-center">
-                    <p class="text-xs text-gray-500 mb-4">অথবা সোশ্যাল মিডিয়া দিয়ে ১-ক্লিকেই যুক্ত হোন</p>
-                    <div class="flex justify-center space-x-3">
-                        <button onclick="mockSocialLogin('Google')" class="bg-gray-900 border border-gray-800 hover:border-gray-700 text-white px-4 py-2.5 rounded-xl text-xs font-medium flex items-center transition cursor-pointer">
-                            <i class="fa-brands fa-google text-red-500 mr-2 text-sm"></i> Google
+                <div class="mt-8">
+                    <div class="relative flex items-center justify-center mb-6">
+                        <div class="border-t border-gray-800 w-full absolute"></div>
+                        <span class="bg-[#0a0a0a] px-3 text-[10px] uppercase font-bold text-gray-500 relative z-10 tracking-widest">Or continue with</span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button class="bg-[#141414] border border-gray-800 hover:border-gray-600 text-white px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-center transition">
+                            <i class="fa-brands fa-google text-white mr-2"></i> Google
                         </button>
-                        <button onclick="mockSocialLogin('Facebook')" class="bg-gray-900 border border-gray-800 hover:border-gray-700 text-white px-4 py-2.5 rounded-xl text-xs font-medium flex items-center transition cursor-pointer">
-                            <i class="fa-brands fa-facebook text-blue-500 mr-2 text-sm"></i> Facebook
+                        <button class="bg-[#141414] border border-gray-800 hover:border-gray-600 text-white px-4 py-3 rounded-xl text-xs font-bold flex items-center justify-center transition">
+                            <i class="fa-brands fa-apple text-white mr-2 text-sm"></i> Apple
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <section id="stadiums" class="py-24 border-t border-gray-800 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4">৩ দেশের আইকনিক ভেন্যু ভিউ</h2>
-            <p class="text-gray-400 max-w-xl mx-auto">উত্তর আমেরিকার সর্বাধুনিক প্রযুক্তির ১৬টি স্টেডিয়াম মেলাচ্ছে বিশ্বমঞ্চকে। গেস্ট ইউজার হিসেবে জেনে নিন মূল ৩টি ভেন্যু।</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="card-premium rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1563299796-17596ed6b017?auto=format&fit=crop&w=600&q=80" alt="MetLife Stadium" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                <div class="p-6">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-blue-400 bg-blue-950/60 px-2.5 py-1 rounded-md">মেটলাইফ স্টেডিয়াম</span>
-                    <h4 class="font-bold text-white text-lg mt-2 mb-1">নিউ ইয়র্ক / নিউ জার্সি, USA</h4>
-                    <p class="text-xs text-gray-400">ধারণক্ষমতা: ৮২,৫০০ আসন। এখানেই অনুষ্ঠিত হবে ২০২৬ ফিফা বিশ্বকাপের মহাকাব্যিক গ্র্যান্ড ফাইনাল ম্যাচ!</p>
-                </div>
-            </div>
-            <div class="card-premium rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1510563800743-aed236490d08?auto=format&fit=crop&w=600&q=80" alt="Estadio Azteca" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                <div class="p-6">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#00ffcc] bg-[#00ffcc]/10 px-2.5 py-1 rounded-md">এস্তাদিও আসতেকা</span>
-                    <h4 class="font-bold text-white text-lg mt-2 mb-1">মেক্সিকো সিটি, MEXICO</h4>
-                    <p class="text-xs text-gray-400">ধারণক্ষমতা: ৮৭,৫২৬ আসন। ইতিহাসের প্রথম ভেন্যু হিসেবে ৩টি ভিন্ন বিশ্বকাপের উদ্বোধনী ম্যাচের গৌরব অর্জনকারী মাঠ।</p>
-                </div>
-            </div>
-            <div class="card-premium rounded-3xl overflow-hidden group">
-                <img src="https://images.unsplash.com/photo-1575361204480-aadea25e6e68?auto=format&fit=crop&w=600&q=80" alt="BMO Field" class="w-full h-48 object-cover group-hover:scale-105 transition duration-500">
-                <div class="p-6">
-                    <span class="text-[10px] uppercase font-bold tracking-widest text-purple-400 bg-purple-950/60 px-2.5 py-1 rounded-md">বিএমও ফিল্ড</span>
-                    <h4 class="font-bold text-white text-lg mt-2 mb-1">টরন্টো, CANADA</h4>
-                    <p class="text-xs text-gray-400">ধারণক্ষমতা: ৪৫,০০০ আসন। কানাডার ইতিহাসের প্রথম ফিফা বিশ্বকাপ ম্যাচ আয়োজনের জন্য বিশেষভাবে সংস্কারকৃত স্টেডিয়াম।</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="border-t border-gray-900 bg-gray-950/50 py-8 px-6 text-center text-xs text-gray-500">
-        <p>© 2026 FIFA World Cup Live Broadcaster Hub. This UI layout is optimized for ultra-fast performance.</p>
-    </footer>
-
     <script>
-        let dynamicAuthMode = 'login';
+        // Navbar Glass Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-        // Fast Modal Toggle Controller
+        // Modal Logic
         function toggleAuthModal(mode = 'login') {
             const modal = document.getElementById('authModal');
-            dynamicAuthMode = mode;
-            
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 modal.firstElementChild.classList.remove('scale-95');
             }, 10);
-
             switchAuthTab(mode);
         }
 
@@ -466,40 +394,28 @@
             }, 300);
         }
 
-        // Seamless Tab Switcher without rendering delay
         function switchAuthTab(mode) {
-            dynamicAuthMode = mode;
             const loginBtn = document.getElementById('tabLoginBtn');
             const signupBtn = document.getElementById('tabSignupBtn');
-            const signupFields = document.getElementById('signupOnlyFields');
             const submitText = document.getElementById('submitBtnText');
 
             if (mode === 'login') {
-                loginBtn.className = "w-1/2 py-4 font-bold text-white border-b-2 border-[#00ffcc] cursor-pointer";
-                signupBtn.className = "w-1/2 py-4 font-bold text-gray-400 hover:text-white transition cursor-pointer";
-                signupFields.classList.add('hidden');
-                submitText.innerText = "প্লেয়ার অ্যাক্টিভেট করুন";
+                loginBtn.className = "pb-3 text-sm font-bold text-white border-b-2 border-[#00f2fe] transition";
+                signupBtn.className = "pb-3 text-sm font-bold text-gray-500 hover:text-white transition border-b-2 border-transparent";
+                submitText.innerText = "Access 4K Player";
             } else {
-                signupBtn.className = "w-1/2 py-4 font-bold text-white border-b-2 border-[#00ffcc] cursor-pointer";
-                loginBtn.className = "w-1/2 py-4 font-bold text-gray-400 hover:text-white transition cursor-pointer";
-                signupFields.classList.remove('hidden');
-                submitText.innerText = "নতুন অ্যাকাউন্ট তৈরি করুন";
+                signupBtn.className = "pb-3 text-sm font-bold text-white border-b-2 border-[#00f2fe] transition";
+                loginBtn.className = "pb-3 text-sm font-bold text-gray-500 hover:text-white transition border-b-2 border-transparent";
+                submitText.innerText = "Create Free Account";
             }
         }
 
-        // Form Submit interception representing successful safe validation flow
         function handleAuthSubmit(event) {
             event.preventDefault();
-            alert(`ধন্যবাদ! আপনার ২০২৬ বিশ্বকাপ লাইভ প্লেয়ার চ্যানেলটি সফলভাবে অ্যাক্টিভেট হয়েছে।`);
+            alert(`Welcome to FIFA 2026 Premium Hub! Redirecting to the secure stream...`);
             closeAuthModal();
         }
 
-        function mockSocialLogin(provider) {
-            alert(`${provider} এর মাধ্যমে দ্রুত লগইন সফল হয়েছে!`);
-            closeAuthModal();
-        }
-
-        // Close modal when user clicks on background outer wrapper automatically
         window.onclick = function(event) {
             const modal = document.getElementById('authModal');
             if (event.target === modal) {
