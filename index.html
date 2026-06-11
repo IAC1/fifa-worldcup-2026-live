@@ -1,530 +1,315 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA World Cup 2026™ | Ultimate AI Prediction Tracker</title>
+    <title>FIFA 2026 AI PREDICT | Ultimate Destiny</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --fifa-red: #E63946;
-            --fifa-gold: #FFD700;
-            --neon-blue: #00f2fe;
-            --bg-dark: #050505;
-            --bg-card: rgba(20, 20, 22, 0.85);
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandDark: '#050505',
+                        brandBlue: '#38bdf8', /* Cyan/Blue from your image */
+                        cardDark: '#121212',
+                        brandRed: '#dc2626'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
         }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: #f8fafc;
+            background-color: #050505;
+            color: white;
             overflow-x: hidden;
         }
-        h1, h2, h3, .heading-font {
-            font-family: 'Outfit', sans-serif;
+        /* Glowing Red Button */
+        .glow-red {
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+            transition: all 0.3s ease;
         }
-        .text-gradient {
-            background: linear-gradient(135deg, var(--neon-blue) 0%, #4facfe 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .glow-red:hover {
+            box-shadow: 0 0 35px rgba(220, 38, 38, 0.9);
+            transform: scale(1.05);
         }
-        .text-gradient-gold {
-            background: linear-gradient(135deg, #F9D423 0%, #FF4E50 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        /* Glowing Blue Text */
+        .text-glow-blue {
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
         }
+        /* Premium Arrow Animation */
+        @keyframes arrowFlow {
+            0% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(10px); opacity: 1; text-shadow: 0 0 10px #38bdf8; }
+            100% { transform: translateX(0); opacity: 0.5; }
+        }
+        .arrow-premium {
+            display: inline-block;
+            animation: arrowFlow 1.5s infinite ease-in-out;
+            color: #38bdf8;
+        }
+        /* Card Hover Effects */
         .glass-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
+            border: 1px solid #222;
+            transition: all 0.4s ease;
         }
         .glass-card:hover {
+            border-color: #38bdf8;
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
             transform: translateY(-5px);
-            border-color: rgba(0, 242, 254, 0.4);
-            box-shadow: 0 10px 40px rgba(0, 242, 254, 0.1);
-        }
-        .hero-bg {
-            background-image: linear-gradient(to bottom, rgba(5,5,5,0.3), rgba(5,5,5,1)), url('https://images.unsplash.com/photo-1518605368461-1ee12523b1fb?q=80&w=2500&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
         }
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--neon-blue); }
+        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased selection:bg-[#00f2fe] selection:text-black">
+<body class="antialiased">
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-[#050505]/80 backdrop-blur-lg border-b border-gray-800 z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <i class="fa-solid fa-earth-americas text-3xl text-gradient-gold animate-pulse"></i>
-            <span class="text-2xl font-black tracking-tighter heading-font">FIFA <span class="text-white">2026</span> <span class="text-[#00f2fe] text-sm">AI PREDICT</span></span>
+    <nav class="flex justify-between items-center px-4 py-4 md:px-8 max-w-5xl mx-auto border-b border-gray-900">
+        <div class="flex items-center space-x-3 cursor-pointer">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-yellow-600 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)]">
+                <i class="fa-solid fa-earth-americas text-black text-xl"></i>
+            </div>
+            <div class="leading-none">
+                <h1 class="text-xl md:text-2xl font-black font-display tracking-tight">FIFA 2026 <span class="text-gray-400 text-sm">AI</span></h1>
+                <p class="text-brandBlue font-black text-sm tracking-widest uppercase mt-1">Predict</p>
+            </div>
         </div>
-        <div class="hidden md:flex space-x-8 font-bold text-sm text-gray-400">
-            <a href="#groups" class="hover:text-[#00f2fe] transition">Groups</a>
-            <a href="#knockouts" class="hover:text-[#00f2fe] transition">Knockouts</a>
-            <a href="#final" class="hover:text-[#00f2fe] transition">Grand Final</a>
-            <a href="#stats" class="hover:text-[#00f2fe] transition">Stats</a>
-        </div>
-        <div class="text-xs font-bold bg-gradient-to-r from-red-600 to-red-900 px-4 py-2 rounded-full text-white shadow-lg shadow-red-500/20">
-            <i class="fa-solid fa-circle text-[8px] text-red-400 animate-ping mr-1"></i> LIVE TRACKER
-        </div>
+        
+        <button class="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-6 rounded-full text-sm tracking-wider glow-red flex items-center">
+            <span class="w-2 h-2 rounded-full bg-white animate-pulse mr-2"></span> LIVE TRACKER
+        </button>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-bg pt-40 pb-20 px-6 min-h-[80vh] flex flex-col justify-center items-center text-center relative">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
-        <div class="relative z-10 max-w-5xl mx-auto">
-            <div class="inline-block mb-4 px-4 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-sm font-bold text-gray-200">
-                <i class="fa-solid fa-microchip text-[#00f2fe] mr-2"></i> Supercomputer Prediction Engine v4.0
-            </div>
-            <h1 class="text-5xl md:text-8xl font-black mb-6 tracking-tight leading-tight uppercase">
-                The Ultimate <br>
-                <span class="text-gradient">2026 World Cup</span> Destiny
-            </h1>
-            <p class="text-gray-300 text-lg md:text-xl font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-                48 Teams. 104 Matches. 3 Host Nations. Explore our deeply simulated AI predictions for the biggest sporting event in human history.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#final" class="bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.3)]">View Champion</a>
-                <a href="#groups" class="bg-transparent border border-gray-600 px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition text-white">Explore Groups</a>
+    <header class="max-w-4xl mx-auto text-center mt-12 px-4">
+        <div class="inline-flex items-center border border-gray-700 bg-gray-900/50 rounded-full px-5 py-2 mb-8 backdrop-blur-sm">
+            <i class="fa-solid fa-microchip text-brandBlue mr-3 animate-pulse"></i>
+            <span class="text-sm font-semibold text-gray-300">Supercomputer Prediction Engine v4.0</span>
+        </div>
+
+        <h1 class="font-display font-black text-5xl md:text-7xl lg:text-[5rem] uppercase leading-[1.1] mb-8">
+            The <br>
+            Ultimate <br>
+            <span class="text-brandBlue text-glow-blue">2026 World <br> Cup</span> Destiny
+        </h1>
+
+        <p class="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed mb-12">
+            48 Teams. 104 Matches. 3 Host Nations. Explore our deeply simulated AI predictions for the biggest sporting event in human history.
+        </p>
+    </header>
+
+    <section class="max-w-6xl mx-auto px-4 py-16">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-display font-black uppercase text-white mb-2">Simulated Knockout Destiny</h2>
+            <div class="w-24 h-1 bg-brandBlue mx-auto rounded-full"></div>
+            <p class="text-gray-500 mt-4">AI probability calculated over 100,000 simulations</p>
+        </div>
+
+        <div class="overflow-x-auto pb-10">
+            <div class="flex items-center justify-between min-w-[800px] gap-4">
+                
+                <div class="w-1/4 space-y-6">
+                    <div class="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Quarter Finals</div>
+                    
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold flex items-center"><span class="text-xl mr-2">🇫🇷</span> France</span>
+                            <span class="text-gray-500 font-black">1</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-900 p-2 rounded-lg border border-gray-800">
+                            <span class="font-bold flex items-center text-brandBlue"><span class="text-xl mr-2">🇧🇷</span> Brazil</span>
+                            <span class="text-brandBlue font-black text-lg">3</span>
+                        </div>
+                        <p class="text-[10px] text-gray-600 mt-2 text-right">Vini Jr (x2), Rodrygo | Mbappe</p>
+                    </div>
+
+                    <div class="glass-card p-4 rounded-xl">
+                        <div class="flex justify-between items-center mb-3 bg-gray-900 p-2 rounded-lg border border-gray-800">
+                            <span class="font-bold flex items-center text-brandBlue"><span class="text-xl mr-2">🇵🇹</span> Portugal</span>
+                            <span class="text-brandBlue font-black text-lg">2</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold flex items-center"><span class="text-xl mr-2">🇪🇸</span> Spain</span>
+                            <span class="text-gray-500 font-black">0</span>
+                        </div>
+                        <p class="text-[10px] text-gray-600 mt-2 text-right">Leao, Bruno F.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col space-y-32">
+                    <i class="fa-solid fa-angles-right text-3xl arrow-premium"></i>
+                    <i class="fa-solid fa-angles-right text-3xl arrow-premium"></i>
+                </div>
+
+                <div class="w-1/4 space-y-16">
+                    <div class="text-center text-xs font-bold text-brandBlue uppercase tracking-widest mb-4">Semi Finals</div>
+                    
+                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-brandBlue transform scale-105">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-bold flex items-center"><span class="text-2xl mr-2">🇧🇷</span> Brazil</span>
+                            <span class="text-gray-400 font-black text-xl">2</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-gray-900 p-2 rounded-lg">
+                            <span class="font-bold flex items-center text-white"><span class="text-2xl mr-2">🇵🇹</span> Portugal</span>
+                            <span class="text-white font-black text-xl">2</span>
+                        </div>
+                        <div class="mt-3 pt-3 border-t border-gray-800 text-xs text-brandBlue font-bold flex justify-between">
+                            <span>Penalties</span>
+                            <span>BRZ 4 - 5 POR</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mt-2 text-center">Portugal advances to Final via shootout</p>
+                    </div>
+                    
+                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-gray-700">
+                        <div class="flex justify-between items-center mb-4 bg-gray-900 p-2 rounded-lg">
+                            <span class="font-bold flex items-center text-white"><span class="text-2xl mr-2">🇦🇷</span> Argentina</span>
+                            <span class="text-white font-black text-xl">1</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold flex items-center text-gray-500"><span class="text-2xl mr-2 opacity-50">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> England</span>
+                            <span class="text-gray-500 font-black text-xl">0</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 mt-3 text-center">Alvarez 78'</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-center">
+                    <span class="text-xs text-brandBlue font-bold uppercase mb-2 tracking-widest">Road to Glory</span>
+                    <i class="fa-solid fa-arrow-right-long text-4xl arrow-premium"></i>
+                </div>
+
+                <div class="w-1/3">
+                    <div class="text-center text-sm font-black text-yellow-500 uppercase tracking-widest mb-6 animate-pulse">
+                        <i class="fa-solid fa-crown mr-2"></i> Grand Final <i class="fa-solid fa-crown ml-2"></i>
+                    </div>
+                    
+                    <div class="bg-gradient-to-b from-[#1a1a1a] to-[#050505] border border-yellow-600/50 p-6 rounded-2xl shadow-[0_0_40px_rgba(202,138,4,0.15)] relative overflow-hidden group hover:border-yellow-400 transition-colors">
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-500/10 blur-3xl rounded-full"></div>
+                        
+                        <div class="text-center mb-6 text-gray-400 text-xs font-bold uppercase tracking-widest border-b border-gray-800 pb-3">
+                            New York New Jersey Stadium <br> <span class="text-white mt-1 block">July 19, 2026</span>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-8">
+                            <div class="text-center">
+                                <div class="text-5xl mb-2 drop-shadow-lg">🇵🇹</div>
+                                <div class="font-black text-xl">Portugal</div>
+                            </div>
+                            <div class="flex flex-col items-center px-4">
+                                <div class="text-3xl font-black text-brandBlue drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]">2</div>
+                                <span class="text-xs text-gray-500 font-bold my-1">VS</span>
+                                <div class="text-3xl font-black text-white">1</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-5xl mb-2 drop-shadow-lg opacity-80">🇦🇷</div>
+                                <div class="font-black text-xl text-gray-400">Argentina</div>
+                            </div>
+                        </div>
+
+                        <div class="bg-black/50 rounded-xl p-4 border border-gray-800/50">
+                            <h4 class="text-xs text-center text-gray-500 font-bold uppercase mb-3">AI Simulated Match Events</h4>
+                            <ul class="space-y-2 text-sm font-medium">
+                                <li class="flex justify-between items-center text-gray-400">
+                                    <span><i class="fa-solid fa-futbol text-gray-600 mr-2"></i> Mac Allister (ARG)</span>
+                                    <span class="font-bold">22'</span>
+                                </li>
+                                <li class="flex justify-between items-center text-brandBlue">
+                                    <span><i class="fa-solid fa-futbol mr-2"></i> Goncalo Ramos (POR)</span>
+                                    <span class="font-bold">67'</span>
+                                </li>
+                                <li class="flex justify-between items-center text-yellow-500">
+                                    <span><i class="fa-solid fa-futbol mr-2"></i> Rafael Leao (POR)</span>
+                                    <span class="font-bold text-yellow-500">89' <i class="fa-solid fa-fire ml-1"></i></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-6 text-center">
+                            <div class="inline-block bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-yellow-500/30">
+                                Simulated World Champions: Portugal
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
-    <main class="max-w-7xl mx-auto px-6 space-y-24 pb-32">
-
-        <!-- All 12 Groups Section -->
-        <section id="groups" class="pt-10">
-            <div class="flex flex-col items-center mb-12 text-center">
-                <h2 class="text-4xl font-black text-white uppercase tracking-widest heading-font mb-2">AI Predicted Group Standings</h2>
-                <p class="text-gray-400">Projected final points based on 10,000+ match simulations</p>
-                <div class="w-24 h-1 bg-[#00f2fe] mt-6 rounded-full"></div>
-            </div>
-
-            <!-- Groups Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Group A -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP A</span>
-                        <span class="text-xs text-gray-500 uppercase">Mexico / USA / Canada</span>
-                    </div>
-                    <div class="p-4">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr>
-                                    <th class="pb-2">Team</th>
-                                    <th class="pb-2 text-center">P</th>
-                                    <th class="pb-2 text-center">Pts</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇲🇽</span>Mexico (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">7</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇨🇿</span>Czechia (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">5</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-yellow-500"><span class="mr-2">🇰🇷</span>South Korea</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">4</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇿🇦</span>South Africa</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Group B -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP B</span>
-                    </div>
-                    <div class="p-4">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr><th class="pb-2">Team</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th></tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇨🇭</span>Switzerland (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">9</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇨🇦</span>Canada (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">4</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇧🇦</span>Bosnia</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">2</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇶🇦</span>Qatar</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Group C -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP C</span>
-                    </div>
-                    <div class="p-4">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr><th class="pb-2">Team</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th></tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇧🇷</span>Brazil (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">9</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇲🇦</span>Morocco (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">6</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>Scotland</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">3</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇭🇹</span>Haiti</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Group D -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP D</span>
-                    </div>
-                    <div class="p-4">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr><th class="pb-2">Team</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th></tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇺🇸</span>USA (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">7</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇹🇷</span>Türkiye (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">5</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇦🇺</span>Australia</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">2</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇵🇾</span>Paraguay</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Group E -->
-                <div class="glass-card rounded-2xl overflow-hidden">
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP E</span>
-                    </div>
-                    <div class="p-4">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr><th class="pb-2">Team</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th></tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇩🇪</span>Germany (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">9</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇪🇨</span>Ecuador (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">6</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇨🇮</span>Ivory Coast</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">3</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇨🇼</span>Curaçao</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">0</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Group J (Highlight Argentina) -->
-                <div class="glass-card rounded-2xl overflow-hidden relative">
-                    <div class="absolute -right-6 -top-6 text-yellow-500/10"><i class="fa-solid fa-star text-9xl"></i></div>
-                    <div class="bg-gray-900/80 px-4 py-3 border-b border-gray-800 flex justify-between items-center relative z-10">
-                        <span class="font-bold text-lg heading-font text-[#00f2fe]">GROUP J</span>
-                        <span class="bg-yellow-500 text-black text-[10px] px-2 py-1 rounded-full font-bold">DEFENDING CHAMPS</span>
-                    </div>
-                    <div class="p-4 relative z-10">
-                        <table class="w-full text-sm text-left">
-                            <thead class="text-gray-500 text-xs uppercase border-b border-gray-800">
-                                <tr><th class="pb-2">Team</th><th class="pb-2 text-center">P</th><th class="pb-2 text-center">Pts</th></tr>
-                            </thead>
-                            <tbody class="text-gray-200">
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-black text-white"><span class="mr-2">🇦🇷</span>Argentina (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black text-yellow-400">9</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 font-bold text-green-400"><span class="mr-2">🇦🇹</span>Austria (Q)</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">4</td>
-                                </tr>
-                                <tr class="border-b border-gray-800/50">
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇩🇿</span>Algeria</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">2</td>
-                                </tr>
-                                <tr>
-                                    <td class="py-3 text-gray-500"><span class="mr-2">🇯🇴</span>Jordan</td>
-                                    <td class="text-center">3</td><td class="text-center font-black">1</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </div>
+    <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-900">
+        <h3 class="text-2xl font-display font-black uppercase mb-8 flex items-center">
+            <i class="fa-solid fa-bolt text-brandBlue mr-3"></i> AI Predicted Shock Upsets
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div class="text-center mt-8">
-                <button class="bg-gray-800 hover:bg-gray-700 text-white px-6 py-2 rounded-full text-sm font-bold transition">Load All 12 Groups <i class="fa-solid fa-chevron-down ml-2"></i></button>
-            </div>
-        </section>
-
-        <!-- Knockout Stages Highlight -->
-        <section id="knockouts" class="pt-10">
-            <div class="flex items-center mb-10">
-                <h2 class="text-3xl md:text-4xl font-black text-white uppercase tracking-wider heading-font">Knockout Thrillers</h2>
-                <div class="h-px bg-gradient-to-r from-[#00f2fe] to-transparent flex-grow ml-6"></div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                
-                <!-- Match Card 1 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 bg-[#00f2fe]/20 text-[#00f2fe] text-[10px] uppercase font-black px-3 py-1 rounded-bl-xl backdrop-blur-sm z-10">Quarter Final</div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex flex-col items-center w-[40%]">
-                            <span class="text-5xl mb-2 group-hover:scale-110 transition duration-300">🇪🇸</span>
-                            <span class="font-bold text-xl text-gray-400">Spain</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[20%]">
-                            <span class="bg-black/50 border border-gray-700 text-white font-black text-2xl px-4 py-2 rounded-xl">1 - 2</span>
-                            <span class="text-[10px] text-gray-400 mt-2 font-bold tracking-widest bg-gray-800 px-2 py-0.5 rounded">FT</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[40%]">
-                            <span class="text-5xl mb-2 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] group-hover:scale-110 transition duration-300">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-                            <span class="font-black text-xl text-white">England</span>
-                        </div>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-sm flex justify-between text-gray-400 bg-black/20 p-3 rounded-xl">
-                        <span>⚽ Yamal (12')</span>
-                        <span class="text-right">⚽ Bellingham (65')<br>⚽ Kane (88' PEN)</span>
-                    </div>
+            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                    Round of 16
                 </div>
-
-                <!-- Match Card 2 -->
-                <div class="glass-card p-6 rounded-2xl flex flex-col relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 bg-yellow-500/20 text-yellow-500 text-[10px] uppercase font-black px-3 py-1 rounded-bl-xl backdrop-blur-sm z-10">Semi Final</div>
-                    <div class="flex justify-between items-center mt-4">
-                        <div class="flex flex-col items-center w-[40%]">
-                            <span class="text-5xl mb-2 drop-shadow-[0_0_15px_rgba(255,215,0,0.5)] group-hover:scale-110 transition duration-300">🇦🇷</span>
-                            <span class="font-black text-xl text-white">Argentina</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[20%]">
-                            <span class="bg-black/50 border border-yellow-700/50 text-white font-black text-2xl px-4 py-2 rounded-xl shadow-[0_0_15px_rgba(234,179,8,0.2)]">3 - 1</span>
-                            <span class="text-[10px] text-yellow-500 mt-2 font-bold tracking-widest bg-yellow-500/10 px-2 py-0.5 rounded">AET</span>
-                        </div>
-                        <div class="flex flex-col items-center w-[40%]">
-                            <span class="text-5xl mb-2 opacity-80 group-hover:scale-110 transition duration-300">🇧🇷</span>
-                            <span class="font-bold text-xl text-gray-400">Brazil</span>
-                        </div>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-gray-800 text-sm flex justify-between text-gray-400 bg-black/20 p-3 rounded-xl">
-                        <span>⚽ Alvarez (45')<br>⚽ Garnacho (105', 118')</span>
-                        <span class="text-right">⚽ Vinícius Jr (72')</span>
-                    </div>
+                <h4 class="text-lg font-bold mb-4 mt-2">USA Stuns England</h4>
+                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
+                    <div class="flex items-center"><span class="text-2xl mr-2">🇺🇸</span> USA</div>
+                    <span class="font-black text-brandBlue text-xl">2</span>
                 </div>
-
-            </div>
-        </section>
-
-        <!-- Grand Final Section -->
-        <section id="final" class="relative mt-20 pt-10">
-            <!-- Glow background effect -->
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-[100px] z-0 rounded-full pointer-events-none"></div>
-            
-            <div class="relative z-10 border border-[#00f2fe]/30 bg-black/80 backdrop-blur-2xl p-10 md:p-16 rounded-[3rem] text-center shadow-[0_0_50px_rgba(0,242,254,0.1)] overflow-hidden">
-                
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00f2fe] to-transparent"></div>
-
-                <div class="animate-float mb-6 inline-block">
-                    <i class="fa-solid fa-trophy text-6xl md:text-8xl text-yellow-400 drop-shadow-[0_0_30px_rgba(250,204,21,0.6)]"></i>
+                <div class="flex justify-between items-center p-3">
+                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> England</div>
+                    <span class="font-black text-gray-600 text-xl">1</span>
                 </div>
-                
-                <h2 class="text-4xl md:text-6xl font-black text-white uppercase tracking-widest mb-3 heading-font">World Cup Final 2026</h2>
-                <p class="text-gray-400 text-sm md:text-base mb-12 font-medium bg-white/5 inline-block px-4 py-2 rounded-full border border-white/10">
-                    <i class="fa-solid fa-location-dot mr-2 text-red-500"></i> MetLife Stadium, New York/New Jersey • July 19, 2026
-                </p>
-
-                <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-16 mb-12">
-                    
-                    <!-- Finalist 1 -->
-                    <div class="flex flex-col items-center z-10 w-full md:w-1/3">
-                        <div class="w-32 h-32 md:w-40 md:h-40 bg-white/5 rounded-full flex items-center justify-center border-4 border-yellow-400 shadow-[0_0_40px_rgba(250,204,21,0.4)] mb-4 relative">
-                            <span class="text-7xl md:text-8xl">🇦🇷</span>
-                            <div class="absolute -bottom-4 bg-yellow-500 text-black font-black text-xs px-3 py-1 rounded-full uppercase tracking-widest">Champions</div>
-                        </div>
-                        <span class="font-black text-3xl md:text-4xl text-white">ARGENTINA</span>
-                        <div class="flex space-x-1 mt-2">
-                            <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-                            <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-                            <i class="fa-solid fa-star text-yellow-500 text-xs"></i>
-                            <i class="fa-solid fa-star text-yellow-500 text-xs animate-bounce"></i>
-                        </div>
-                    </div>
-                    
-                    <!-- Score -->
-                    <div class="flex flex-col items-center w-full md:w-1/3">
-                        <div class="relative">
-                            <span class="bg-gradient-to-b from-gray-100 to-gray-400 text-black font-black text-5xl md:text-7xl px-8 py-4 rounded-2xl shadow-[0_0_30px_rgba(255,255,255,0.2)] inline-block">2 - 1</span>
-                        </div>
-                        <span class="text-sm text-[#00f2fe] mt-4 font-bold tracking-[0.2em] bg-[#00f2fe]/10 px-4 py-1 rounded-full border border-[#00f2fe]/30">AFTER EXTRA TIME</span>
-                    </div>
-
-                    <!-- Finalist 2 -->
-                    <div class="flex flex-col items-center w-full md:w-1/3 opacity-80">
-                        <div class="w-28 h-28 md:w-32 md:h-32 bg-white/5 rounded-full flex items-center justify-center border-2 border-gray-600 mb-4 grayscale hover:grayscale-0 transition duration-500">
-                            <span class="text-6xl md:text-7xl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>
-                        </div>
-                        <span class="font-bold text-2xl md:text-3xl text-gray-400">ENGLAND</span>
-                        <span class="text-xs text-gray-500 mt-2 font-bold uppercase tracking-widest">Runner-Up</span>
-                    </div>
-                </div>
-
-                <!-- Match Details -->
-                <div class="max-w-2xl mx-auto bg-black/40 rounded-2xl p-6 border border-gray-800 text-left">
-                    <h4 class="text-center font-bold text-gray-400 mb-4 uppercase text-xs tracking-widest border-b border-gray-800 pb-2">Match Events</h4>
-                    <div class="space-y-4 text-sm md:text-base">
-                        <div class="flex justify-between items-center text-gray-300">
-                            <div class="flex items-center"><span class="text-xl mr-3">🇦🇷</span> <b>Mac Allister</b> <span class="text-gray-500 ml-2">42'</span></div>
-                            <i class="fa-regular fa-futbol text-gray-600"></i>
-                        </div>
-                        <div class="flex justify-between items-center text-gray-300">
-                            <i class="fa-regular fa-futbol text-gray-600"></i>
-                            <div class="flex items-center"><span class="text-gray-500 mr-2">89'</span> <b>Saka</b> <span class="text-xl ml-3">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span></div>
-                        </div>
-                        <div class="flex justify-between items-center text-yellow-400 bg-yellow-400/10 p-2 rounded-lg border border-yellow-400/20">
-                            <div class="flex items-center"><span class="text-xl mr-3">🇦🇷</span> <b>Julián Álvarez</b> <span class="text-yellow-600 ml-2 font-bold">112' (AET)</span></div>
-                            <i class="fa-solid fa-futbol text-yellow-500 animate-pulse"></i>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Stats Section -->
-        <section id="stats" class="pt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="glass-card p-8 rounded-3xl">
-                <h3 class="text-2xl font-black text-white mb-6 flex items-center"><i class="fa-solid fa-shoe-prints text-gold mr-3 text-yellow-500"></i> Golden Boot Predictor</h3>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/10">
-                        <div class="flex items-center space-x-4">
-                            <span class="font-black text-xl text-gray-400">1</span>
-                            <div class="w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1574629810360-7efbbcb27a4d?q=80&w=200&auto=format&fit=crop');"></div>
-                            <div>
-                                <p class="font-bold text-white">Kylian Mbappé</p>
-                                <p class="text-xs text-gray-400">🇫🇷 France</p>
-                            </div>
-                        </div>
-                        <div class="text-2xl font-black text-[#00f2fe]">7 <span class="text-sm text-gray-500 font-normal">Goals</span></div>
-                    </div>
-                    <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/10">
-                        <div class="flex items-center space-x-4">
-                            <span class="font-black text-xl text-gray-400">2</span>
-                            <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-xl">🇦🇷</div>
-                            <div>
-                                <p class="font-bold text-white">Julián Álvarez</p>
-                                <p class="text-xs text-gray-400">🇦🇷 Argentina</p>
-                            </div>
-                        </div>
-                        <div class="text-2xl font-black text-white">6 <span class="text-sm text-gray-500 font-normal">Goals</span></div>
-                    </div>
-                    <div class="flex justify-between items-center bg-white/5 p-4 rounded-xl border border-white/10">
-                        <div class="flex items-center space-x-4">
-                            <span class="font-black text-xl text-gray-400">3</span>
-                            <div class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-xl">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-                            <div>
-                                <p class="font-bold text-white">Harry Kane</p>
-                                <p class="text-xs text-gray-400">🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</p>
-                            </div>
-                        </div>
-                        <div class="text-2xl font-black text-white">5 <span class="text-sm text-gray-500 font-normal">Goals</span></div>
-                    </div>
-                </div>
+                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> Pulisic scores 90+4' winner.</p>
             </div>
 
-            <div class="glass-card p-8 rounded-3xl bg-[url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center relative overflow-hidden group">
-                <div class="absolute inset-0 bg-black/80 group-hover:bg-black/70 transition duration-500"></div>
-                <div class="relative z-10 flex flex-col h-full justify-center">
-                    <div class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full w-max mb-4 animate-pulse">BREAKING INSIGHT</div>
-                    <h3 class="text-3xl font-black text-white mb-2 leading-tight">AI says South American dominance continues.</h3>
-                    <p class="text-gray-300 text-sm leading-relaxed mb-6">Our 10,000+ simulation models indicate a 64% probability that a CONMEBOL team lifts the trophy in North America, breaking the European streak.</p>
-                    <button class="bg-[#00f2fe] text-black font-bold py-3 px-6 rounded-xl hover:bg-white transition w-max">Read Full Report</button>
+            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                    Group Stage
                 </div>
+                <h4 class="text-lg font-bold mb-4 mt-2">Morocco Tops Group</h4>
+                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
+                    <div class="flex items-center"><span class="text-2xl mr-2">🇲🇦</span> Morocco</div>
+                    <span class="font-black text-brandBlue text-xl">1</span>
+                </div>
+                <div class="flex justify-between items-center p-3">
+                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🇩🇪</span> Germany</div>
+                    <span class="font-black text-gray-600 text-xl">0</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> AI probability: 42% chance.</p>
             </div>
-        </section>
 
-    </main>
+            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
+                    Round of 32
+                </div>
+                <h4 class="text-lg font-bold mb-4 mt-2">Japan Magic Again</h4>
+                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
+                    <div class="flex items-center"><span class="text-2xl mr-2">🇯🇵</span> Japan</div>
+                    <span class="font-black text-brandBlue text-xl">3</span>
+                </div>
+                <div class="flex justify-between items-center p-3">
+                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🇺🇾</span> Uruguay</div>
+                    <span class="font-black text-gray-600 text-xl">2</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> Comeback from 2-0 down.</p>
+            </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-white/10 bg-black py-12 relative overflow-hidden">
-        <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00f2fe]/50 to-transparent"></div>
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center text-sm">
-            <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                <i class="fa-solid fa-robot text-2xl text-[#00f2fe]"></i>
-                <span class="text-xl font-black tracking-tighter text-white heading-font">AI PREDICT 26</span>
-            </div>
-            <div class="text-gray-500 text-center md:text-right">
-                <p>⚠️ Disclaimer: This is an AI-generated mock prediction tracker for UI/UX demonstration purposes.</p>
-                <p class="mt-1">&copy; 2026 Developer | Built with TailwindCSS & Advanced HTML5</p>
-            </div>
         </div>
+    </section>
+
+    <footer class="border-t border-gray-900 mt-12 py-8 text-center text-sm text-gray-600">
+        <p class="mb-2"><i class="fa-solid fa-microchip mr-1"></i> Powered by Simulated Predict26 AI Engine.</p>
+        <p>Disclaimer: This is a highly simulated AI prediction tracker. Real-world results may vary.</p>
     </footer>
 
 </body>
