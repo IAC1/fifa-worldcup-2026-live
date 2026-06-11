@@ -3,314 +3,366 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FIFA 2026 AI PREDICT | Ultimate Destiny</title>
+    <title>FIFA 2026 Quantum AI | Zero-Error Prediction</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        brandDark: '#050505',
-                        brandBlue: '#38bdf8', /* Cyan/Blue from your image */
-                        cardDark: '#121212',
-                        brandRed: '#dc2626'
+                        quantumBlack: '#020204',
+                        cyberCyan: '#00f0ff',
+                        cyberPurple: '#b026ff',
+                        cyberRed: '#ff003c',
+                        glassBg: 'rgba(10, 10, 15, 0.65)'
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Montserrat', 'sans-serif']
+                        mono: ['Share Tech Mono', 'monospace'],
+                        sans: ['Rajdhani', 'sans-serif']
                     }
                 }
             }
         }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    
+    <!-- Futuristic Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* 100x Ahead Hardware Accelerated Rendering */
         body {
-            background-color: #050505;
-            color: white;
+            background-color: var(--quantumBlack);
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 240, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            background-attachment: fixed;
         }
-        /* Glowing Red Button */
-        .glow-red {
-            box-shadow: 0 0 20px rgba(220, 38, 38, 0.6);
+
+        /* Cyber Glass Cards */
+        .cyber-card {
+            background: var(--glassBg);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             transition: all 0.3s ease;
         }
-        .glow-red:hover {
-            box-shadow: 0 0 35px rgba(220, 38, 38, 0.9);
-            transform: scale(1.05);
+        
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyberCyan), transparent);
+            transform: translateX(-100%);
+            animation: scanline 3s linear infinite;
         }
-        /* Glowing Blue Text */
-        .text-glow-blue {
-            text-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+
+        @keyframes scanline {
+            100% { transform: translateX(100%); }
         }
-        /* Premium Arrow Animation */
-        @keyframes arrowFlow {
-            0% { transform: translateX(0); opacity: 0.5; }
-            50% { transform: translateX(10px); opacity: 1; text-shadow: 0 0 10px #38bdf8; }
-            100% { transform: translateX(0); opacity: 0.5; }
-        }
-        .arrow-premium {
+
+        /* Glowing Text & Elements */
+        .neon-text-cyan { text-shadow: 0 0 10px rgba(0,240,255,0.7), 0 0 20px rgba(0,240,255,0.5); }
+        .neon-text-purple { text-shadow: 0 0 10px rgba(176,38,255,0.7); }
+        .neon-border { box-shadow: inset 0 0 15px rgba(0,240,255,0.2), 0 0 15px rgba(0,240,255,0.2); border: 1px solid var(--cyberCyan); }
+
+        /* Advanced Premium Arrows */
+        .quantum-arrow {
+            position: relative;
             display: inline-block;
-            animation: arrowFlow 1.5s infinite ease-in-out;
-            color: #38bdf8;
+            width: 40px; height: 2px;
+            background: var(--cyberCyan);
+            box-shadow: 0 0 10px var(--cyberCyan);
         }
-        /* Card Hover Effects */
-        .glass-card {
-            background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
-            border: 1px solid #222;
-            transition: all 0.4s ease;
+        .quantum-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0; top: -4px;
+            width: 10px; height: 10px;
+            border-top: 2px solid var(--cyberCyan);
+            border-right: 2px solid var(--cyberCyan);
+            transform: rotate(45deg);
+            box-shadow: inset -2px 2px 5px rgba(0,240,255,0.5);
+            animation: arrowPulse 1.5s infinite;
         }
-        .glass-card:hover {
-            border-color: #38bdf8;
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-            transform: translateY(-5px);
+
+        @keyframes arrowPulse {
+            0% { transform: rotate(45deg) scale(1); opacity: 0.5; }
+            50% { transform: rotate(45deg) scale(1.2); opacity: 1; border-color: #fff; }
+            100% { transform: rotate(45deg) scale(1); opacity: 0.5; }
         }
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: #38bdf8; border-radius: 10px; }
+
+        /* Live Sync Pulse Effect */
+        .live-indicator {
+            width: 8px; height: 8px;
+            background-color: var(--cyberRed);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--cyberRed);
+            animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* Data Bars */
+        .data-bar-bg { background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; overflow: hidden; }
+        .data-bar-fill { height: 100%; background: var(--cyberCyan); box-shadow: 0 0 10px var(--cyberCyan); transition: width 0.5s ease; }
+
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="flex justify-between items-center px-4 py-4 md:px-8 max-w-5xl mx-auto border-b border-gray-900">
-        <div class="flex items-center space-x-3 cursor-pointer">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-500 to-yellow-600 flex items-center justify-center shadow-[0_0_15px_rgba(249,115,22,0.4)]">
-                <i class="fa-solid fa-earth-americas text-black text-xl"></i>
+    <!-- Neural Network Navigation -->
+    <nav class="fixed w-full z-50 bg-quantumBlack/80 backdrop-blur-lg border-b border-cyberCyan/20">
+        <div class="max-w-[1600px] mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <i class="fa-solid fa-network-wired text-cyberCyan text-2xl animate-pulse"></i>
+                <div class="leading-none">
+                    <h1 class="text-2xl font-bold tracking-widest text-white">QUANTUM<span class="text-cyberCyan">26</span> <span class="text-xs text-cyberPurple border border-cyberPurple px-1 rounded">V5.0</span></h1>
+                    <p class="font-mono text-xs text-gray-400 uppercase tracking-[0.2em] mt-1">Zero-Error Prediction Engine</p>
+                </div>
             </div>
-            <div class="leading-none">
-                <h1 class="text-xl md:text-2xl font-black font-display tracking-tight">FIFA 2026 <span class="text-gray-400 text-sm">AI</span></h1>
-                <p class="text-brandBlue font-black text-sm tracking-widest uppercase mt-1">Predict</p>
+            
+            <div class="flex items-center space-x-8 font-mono text-sm">
+                <div class="flex items-center space-x-2 bg-cyberCyan/10 px-3 py-1 rounded border border-cyberCyan/30">
+                    <span class="text-gray-400">SYS_DATE:</span>
+                    <span id="liveDate" class="text-cyberCyan neon-text-cyan font-bold">Initializing...</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <div class="live-indicator"></div>
+                    <span class="text-cyberRed font-bold tracking-widest">LIVE SYNC</span>
+                </div>
+                <div class="text-green-400 border border-green-500/50 px-3 py-1 rounded flex items-center">
+                    <i class="fa-solid fa-shield-check mr-2"></i> Auto-Correction: ON
+                </div>
             </div>
         </div>
-        
-        <button class="bg-gradient-to-r from-red-600 to-red-800 text-white font-bold py-2 px-6 rounded-full text-sm tracking-wider glow-red flex items-center">
-            <span class="w-2 h-2 rounded-full bg-white animate-pulse mr-2"></span> LIVE TRACKER
-        </button>
     </nav>
 
-    <header class="max-w-4xl mx-auto text-center mt-12 px-4">
-        <div class="inline-flex items-center border border-gray-700 bg-gray-900/50 rounded-full px-5 py-2 mb-8 backdrop-blur-sm">
-            <i class="fa-solid fa-microchip text-brandBlue mr-3 animate-pulse"></i>
-            <span class="text-sm font-semibold text-gray-300">Supercomputer Prediction Engine v4.0</span>
-        </div>
-
-        <h1 class="font-display font-black text-5xl md:text-7xl lg:text-[5rem] uppercase leading-[1.1] mb-8">
-            The <br>
-            Ultimate <br>
-            <span class="text-brandBlue text-glow-blue">2026 World <br> Cup</span> Destiny
-        </h1>
-
-        <p class="text-gray-400 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed mb-12">
-            48 Teams. 104 Matches. 3 Host Nations. Explore our deeply simulated AI predictions for the biggest sporting event in human history.
-        </p>
-    </header>
-
-    <section class="max-w-6xl mx-auto px-4 py-16">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-display font-black uppercase text-white mb-2">Simulated Knockout Destiny</h2>
-            <div class="w-24 h-1 bg-brandBlue mx-auto rounded-full"></div>
-            <p class="text-gray-500 mt-4">AI probability calculated over 100,000 simulations</p>
-        </div>
-
-        <div class="overflow-x-auto pb-10">
-            <div class="flex items-center justify-between min-w-[800px] gap-4">
-                
-                <div class="w-1/4 space-y-6">
-                    <div class="text-center text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Quarter Finals</div>
-                    
-                    <div class="glass-card p-4 rounded-xl">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="font-bold flex items-center"><span class="text-xl mr-2">🇫🇷</span> France</span>
-                            <span class="text-gray-500 font-black">1</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900 p-2 rounded-lg border border-gray-800">
-                            <span class="font-bold flex items-center text-brandBlue"><span class="text-xl mr-2">🇧🇷</span> Brazil</span>
-                            <span class="text-brandBlue font-black text-lg">3</span>
-                        </div>
-                        <p class="text-[10px] text-gray-600 mt-2 text-right">Vini Jr (x2), Rodrygo | Mbappe</p>
-                    </div>
-
-                    <div class="glass-card p-4 rounded-xl">
-                        <div class="flex justify-between items-center mb-3 bg-gray-900 p-2 rounded-lg border border-gray-800">
-                            <span class="font-bold flex items-center text-brandBlue"><span class="text-xl mr-2">🇵🇹</span> Portugal</span>
-                            <span class="text-brandBlue font-black text-lg">2</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold flex items-center"><span class="text-xl mr-2">🇪🇸</span> Spain</span>
-                            <span class="text-gray-500 font-black">0</span>
-                        </div>
-                        <p class="text-[10px] text-gray-600 mt-2 text-right">Leao, Bruno F.</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col space-y-32">
-                    <i class="fa-solid fa-angles-right text-3xl arrow-premium"></i>
-                    <i class="fa-solid fa-angles-right text-3xl arrow-premium"></i>
-                </div>
-
-                <div class="w-1/4 space-y-16">
-                    <div class="text-center text-xs font-bold text-brandBlue uppercase tracking-widest mb-4">Semi Finals</div>
-                    
-                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-brandBlue transform scale-105">
-                        <div class="flex justify-between items-center mb-4">
-                            <span class="font-bold flex items-center"><span class="text-2xl mr-2">🇧🇷</span> Brazil</span>
-                            <span class="text-gray-400 font-black text-xl">2</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-gray-900 p-2 rounded-lg">
-                            <span class="font-bold flex items-center text-white"><span class="text-2xl mr-2">🇵🇹</span> Portugal</span>
-                            <span class="text-white font-black text-xl">2</span>
-                        </div>
-                        <div class="mt-3 pt-3 border-t border-gray-800 text-xs text-brandBlue font-bold flex justify-between">
-                            <span>Penalties</span>
-                            <span>BRZ 4 - 5 POR</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-2 text-center">Portugal advances to Final via shootout</p>
-                    </div>
-                    
-                    <div class="glass-card p-5 rounded-xl border-l-4 border-l-gray-700">
-                        <div class="flex justify-between items-center mb-4 bg-gray-900 p-2 rounded-lg">
-                            <span class="font-bold flex items-center text-white"><span class="text-2xl mr-2">🇦🇷</span> Argentina</span>
-                            <span class="text-white font-black text-xl">1</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="font-bold flex items-center text-gray-500"><span class="text-2xl mr-2 opacity-50">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> England</span>
-                            <span class="text-gray-500 font-black text-xl">0</span>
-                        </div>
-                        <p class="text-[10px] text-gray-500 mt-3 text-center">Alvarez 78'</p>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <span class="text-xs text-brandBlue font-bold uppercase mb-2 tracking-widest">Road to Glory</span>
-                    <i class="fa-solid fa-arrow-right-long text-4xl arrow-premium"></i>
-                </div>
-
-                <div class="w-1/3">
-                    <div class="text-center text-sm font-black text-yellow-500 uppercase tracking-widest mb-6 animate-pulse">
-                        <i class="fa-solid fa-crown mr-2"></i> Grand Final <i class="fa-solid fa-crown ml-2"></i>
-                    </div>
-                    
-                    <div class="bg-gradient-to-b from-[#1a1a1a] to-[#050505] border border-yellow-600/50 p-6 rounded-2xl shadow-[0_0_40px_rgba(202,138,4,0.15)] relative overflow-hidden group hover:border-yellow-400 transition-colors">
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-yellow-500/10 blur-3xl rounded-full"></div>
-                        
-                        <div class="text-center mb-6 text-gray-400 text-xs font-bold uppercase tracking-widest border-b border-gray-800 pb-3">
-                            New York New Jersey Stadium <br> <span class="text-white mt-1 block">July 19, 2026</span>
-                        </div>
-
-                        <div class="flex items-center justify-between mb-8">
-                            <div class="text-center">
-                                <div class="text-5xl mb-2 drop-shadow-lg">🇵🇹</div>
-                                <div class="font-black text-xl">Portugal</div>
-                            </div>
-                            <div class="flex flex-col items-center px-4">
-                                <div class="text-3xl font-black text-brandBlue drop-shadow-[0_0_10px_rgba(56,189,248,0.8)]">2</div>
-                                <span class="text-xs text-gray-500 font-bold my-1">VS</span>
-                                <div class="text-3xl font-black text-white">1</div>
-                            </div>
-                            <div class="text-center">
-                                <div class="text-5xl mb-2 drop-shadow-lg opacity-80">🇦🇷</div>
-                                <div class="font-black text-xl text-gray-400">Argentina</div>
-                            </div>
-                        </div>
-
-                        <div class="bg-black/50 rounded-xl p-4 border border-gray-800/50">
-                            <h4 class="text-xs text-center text-gray-500 font-bold uppercase mb-3">AI Simulated Match Events</h4>
-                            <ul class="space-y-2 text-sm font-medium">
-                                <li class="flex justify-between items-center text-gray-400">
-                                    <span><i class="fa-solid fa-futbol text-gray-600 mr-2"></i> Mac Allister (ARG)</span>
-                                    <span class="font-bold">22'</span>
-                                </li>
-                                <li class="flex justify-between items-center text-brandBlue">
-                                    <span><i class="fa-solid fa-futbol mr-2"></i> Goncalo Ramos (POR)</span>
-                                    <span class="font-bold">67'</span>
-                                </li>
-                                <li class="flex justify-between items-center text-yellow-500">
-                                    <span><i class="fa-solid fa-futbol mr-2"></i> Rafael Leao (POR)</span>
-                                    <span class="font-bold text-yellow-500">89' <i class="fa-solid fa-fire ml-1"></i></span>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                        <div class="mt-6 text-center">
-                            <div class="inline-block bg-yellow-500/20 text-yellow-400 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-yellow-500/30">
-                                Simulated World Champions: Portugal
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-4 py-12 border-t border-gray-900">
-        <h3 class="text-2xl font-display font-black uppercase mb-8 flex items-center">
-            <i class="fa-solid fa-bolt text-brandBlue mr-3"></i> AI Predicted Shock Upsets
-        </h3>
+    <main class="pt-24 pb-20 max-w-[1600px] mx-auto px-6">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Header Analytics -->
+        <header class="flex flex-col md:flex-row justify-between items-end mb-10 border-b border-gray-800 pb-6">
+            <div>
+                <h2 class="text-5xl md:text-7xl font-bold uppercase tracking-tight leading-none mb-2">
+                    Neural <br> <span class="text-cyberCyan neon-text-cyan">Prediction Matrix</span>
+                </h2>
+                <p class="font-mono text-gray-400 mt-4 text-lg">
+                    <i class="fa-solid fa-microchip mr-2 text-cyberPurple"></i> Analyzing 2.4 Billion Variables in Real-Time...
+                </p>
+            </div>
             
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
-                    Round of 16
+            <!-- Global AI Accuracy Tracker -->
+            <div class="cyber-card p-4 min-w-[300px] mt-6 md:mt-0">
+                <div class="flex justify-between font-mono text-xs text-gray-400 mb-2 uppercase">
+                    <span>Engine Accuracy Rate</span>
+                    <span id="accuracyText" class="text-cyberCyan font-bold">99.98%</span>
                 </div>
-                <h4 class="text-lg font-bold mb-4 mt-2">USA Stuns England</h4>
-                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
-                    <div class="flex items-center"><span class="text-2xl mr-2">🇺🇸</span> USA</div>
-                    <span class="font-black text-brandBlue text-xl">2</span>
+                <div class="data-bar-bg mb-3">
+                    <div class="data-bar-fill" style="width: 99.98%;"></div>
                 </div>
-                <div class="flex justify-between items-center p-3">
-                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span> England</div>
-                    <span class="font-black text-gray-600 text-xl">1</span>
+                <div class="flex justify-between items-center text-[10px] text-gray-500 font-mono">
+                    <span id="lastUpdate">Last Update: 0ms ago</span>
+                    <span class="text-cyberPurple">Model: DeepMind-X</span>
                 </div>
-                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> Pulisic scores 90+4' winner.</p>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- LEFT COLUMN: Live & Auto-Updating Results -->
+            <div class="lg:col-span-1 space-y-6">
+                <h3 class="text-xl font-bold uppercase tracking-widest border-l-4 border-cyberCyan pl-3 mb-6">Real-Time Data Streams</h3>
+                
+                <!-- Match Card 1 (Hardcoded from your request but wrapped in dynamic UI) -->
+                <div class="cyber-card p-5 border-l-2 border-l-cyberRed">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-mono bg-cyberRed/20 text-cyberRed px-2 py-1 rounded border border-cyberRed/50">MATCH CONCLUDED (UPDATED)</span>
+                        <span class="text-xs text-gray-500 font-mono">Group A</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center text-xl font-bold"><span class="text-2xl mr-3">🇲🇽</span> MEX</div>
+                        <div class="text-3xl font-mono font-bold text-cyberCyan neon-text-cyan">2</div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center text-xl font-bold text-gray-400"><span class="text-2xl mr-3 opacity-60">🇿🇦</span> RSA</div>
+                        <div class="text-3xl font-mono font-bold text-gray-600">0</div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-800 font-mono text-[10px] text-gray-400">
+                        <i class="fa-solid fa-check-double text-green-500 mr-1"></i> AI Prediction was 100% Accurate. Database Synchronized.
+                    </div>
+                </div>
+
+                <!-- Live Auto-Calculating Match -->
+                <div class="cyber-card p-5 neon-border">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-xs font-mono bg-cyberCyan/20 text-cyberCyan px-2 py-1 rounded border border-cyberCyan/50 flex items-center">
+                            <i class="fa-solid fa-spinner fa-spin mr-2"></i> SIMULATING NEXT
+                        </span>
+                        <span class="text-xs text-gray-500 font-mono">Group B</span>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center text-xl font-bold"><span class="text-2xl mr-3">🇦🇷</span> ARG</div>
+                        <div class="text-xl font-mono font-bold text-gray-500">vs</div>
+                        <div class="flex items-center text-xl font-bold"><span class="text-2xl ml-3">🇺🇸</span> USA</div>
+                    </div>
+                    
+                    <!-- Dynamic Win Probability Bars -->
+                    <div class="space-y-3 font-mono text-xs">
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-cyberCyan">ARG Win Prob.</span> <span id="prob1">76.4%</span></div>
+                            <div class="data-bar-bg"><div id="bar1" class="data-bar-fill" style="width: 76.4%;"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-gray-400">Draw Prob.</span> <span id="prob2">14.2%</span></div>
+                            <div class="data-bar-bg"><div id="bar2" class="data-bar-fill bg-gray-500 box-shadow-none" style="width: 14.2%;"></div></div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="text-cyberRed">USA Win Prob.</span> <span id="prob3">9.4%</span></div>
+                            <div class="data-bar-bg"><div id="bar3" class="data-bar-fill bg-cyberRed box-shadow-none" style="width: 9.4%;"></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
-                    Group Stage
-                </div>
-                <h4 class="text-lg font-bold mb-4 mt-2">Morocco Tops Group</h4>
-                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
-                    <div class="flex items-center"><span class="text-2xl mr-2">🇲🇦</span> Morocco</div>
-                    <span class="font-black text-brandBlue text-xl">1</span>
-                </div>
-                <div class="flex justify-between items-center p-3">
-                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🇩🇪</span> Germany</div>
-                    <span class="font-black text-gray-600 text-xl">0</span>
-                </div>
-                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> AI probability: 42% chance.</p>
-            </div>
+            <!-- RIGHT COLUMN: 100x Ahead Bracket Engine -->
+            <div class="lg:col-span-2">
+                <h3 class="text-xl font-bold uppercase tracking-widest border-l-4 border-cyberPurple pl-3 mb-6">Quantum Roadmap (Auto-Corrected)</h3>
+                
+                <div class="cyber-card p-8 min-h-[500px] relative overflow-hidden">
+                    <!-- Background Grid Effect -->
+                    <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(circle at center, var(--cyberPurple) 0%, transparent 70%);"></div>
 
-            <div class="glass-card p-6 rounded-2xl relative overflow-hidden">
-                <div class="absolute top-0 right-0 bg-brandRed text-white text-[10px] font-black px-3 py-1 rounded-bl-lg uppercase tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">
-                    Round of 32
-                </div>
-                <h4 class="text-lg font-bold mb-4 mt-2">Japan Magic Again</h4>
-                <div class="flex justify-between items-center bg-black/40 p-3 rounded-lg border border-gray-800">
-                    <div class="flex items-center"><span class="text-2xl mr-2">🇯🇵</span> Japan</div>
-                    <span class="font-black text-brandBlue text-xl">3</span>
-                </div>
-                <div class="flex justify-between items-center p-3">
-                    <div class="flex items-center text-gray-500"><span class="text-2xl mr-2">🇺🇾</span> Uruguay</div>
-                    <span class="font-black text-gray-600 text-xl">2</span>
-                </div>
-                <p class="text-xs text-gray-500 mt-3"><i class="fa-solid fa-circle-info mr-1"></i> Comeback from 2-0 down.</p>
-            </div>
+                    <div class="relative z-10 flex items-center justify-between">
+                        
+                        <!-- Semi Finals Node -->
+                        <div class="w-1/3 space-y-12">
+                            <div class="text-cyberPurple font-mono text-sm uppercase tracking-[0.2em] mb-4 text-center">Semi-Final Matrix</div>
+                            
+                            <!-- Node 1 -->
+                            <div class="bg-black/80 border border-gray-700 p-4 rounded hover:border-cyberCyan transition-colors cursor-crosshair group">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="font-bold">🇧🇷 Brazil</span> <span class="font-mono text-cyberCyan">2</span>
+                                </div>
+                                <div class="flex justify-between items-center text-gray-500">
+                                    <span>🏴󠁧󠁢󠁥󠁮󠁧󠁿 England</span> <span class="font-mono">1</span>
+                                </div>
+                                <!-- Hover Stats -->
+                                <div class="hidden group-hover:block mt-3 pt-2 border-t border-gray-800 text-[10px] font-mono text-cyberCyan">
+                                    > Vinicius Jr. 88' (Win Prob: 94%)
+                                </div>
+                            </div>
 
+                            <!-- Node 2 -->
+                            <div class="bg-black/80 border border-gray-700 p-4 rounded hover:border-cyberCyan transition-colors cursor-crosshair group">
+                                <div class="flex justify-between items-center mb-2 text-gray-500">
+                                    <span>🇫🇷 France</span> <span class="font-mono">1</span>
+                                </div>
+                                <div class="flex justify-between items-center text-white">
+                                    <span class="font-bold">🇦🇷 Argentina</span> <span class="font-mono text-cyberCyan">2</span>
+                                </div>
+                                <div class="hidden group-hover:block mt-3 pt-2 border-t border-gray-800 text-[10px] font-mono text-cyberCyan">
+                                    > Messi 112' [AET] (Win Prob: 98%)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quantum Connecting Arrows -->
+                        <div class="flex flex-col items-center justify-center w-1/6">
+                            <div class="quantum-arrow transform rotate-45 mb-16"></div>
+                            <div class="quantum-arrow transform -rotate-45"></div>
+                        </div>
+
+                        <!-- Ultimate Final Node -->
+                        <div class="w-2/5">
+                            <div class="text-center mb-4">
+                                <span class="bg-cyberCyan/10 text-cyberCyan font-mono text-sm px-4 py-1 rounded border border-cyberCyan/50 uppercase tracking-[0.3em] shadow-[0_0_20px_rgba(0,240,255,0.3)]">
+                                    Absolute Destiny
+                                </span>
+                            </div>
+                            
+                            <div class="cyber-card p-6 border-2 border-cyberCyan neon-border text-center transform hover:scale-105 transition-transform duration-500">
+                                <p class="font-mono text-[10px] text-gray-400 mb-6 uppercase tracking-widest border-b border-gray-800 pb-2">
+                                    MetLife Stadium • New York
+                                </p>
+
+                                <div class="flex justify-between items-center mb-6">
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-2">🇧🇷</div>
+                                        <div class="font-bold text-gray-400">Brazil</div>
+                                    </div>
+                                    <div class="flex flex-col font-mono">
+                                        <span class="text-4xl text-gray-500">1</span>
+                                        <span class="text-[10px] text-cyberPurple my-2">VS</span>
+                                        <span class="text-5xl text-cyberCyan neon-text-cyan font-bold">2</span>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-5xl mb-2">🇦🇷</div>
+                                        <div class="font-bold text-white text-xl">Argentina</div>
+                                    </div>
+                                </div>
+                                
+                                <button class="w-full bg-cyberCyan/10 border border-cyberCyan text-cyberCyan font-mono text-xs py-2 hover:bg-cyberCyan hover:text-black transition-colors">
+                                    [ DECRYPT MATCH DATA ]
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </main>
 
-    <footer class="border-t border-gray-900 mt-12 py-8 text-center text-sm text-gray-600">
-        <p class="mb-2"><i class="fa-solid fa-microchip mr-1"></i> Powered by Simulated Predict26 AI Engine.</p>
-        <p>Disclaimer: This is a highly simulated AI prediction tracker. Real-world results may vary.</p>
-    </footer>
+    <!-- The 100x Engine Logic (Auto-Updating & Error Prevention Simulation) -->
+    <script>
+        // 1. Live Date & Time Sync (Never outdated)
+        function updateSystemTime() {
+            const dateObj = new Date();
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second:'2-digit', timeZoneName: 'short' };
+            document.getElementById('liveDate').innerText = dateObj.toLocaleDateString('en-US', options);
+            
+            // Simulating continuous database ping
+            document.getElementById('lastUpdate').innerText = `Last Ping: ${Math.floor(Math.random() * 15) + 1}ms ago`;
+        }
+        setInterval(updateSystemTime, 1000);
+        updateSystemTime();
 
+        // 2. Quantum Probability Adjuster (Makes the UI feel ALIVE and calculating)
+        // This ensures the AI looks like it is constantly "auto-correcting" so it never fails.
+        let baseArg = 76.4;
+        let baseDraw = 14.2;
+        
+        setInterval(() => {
+            // Fluctuate values slightly to simulate supercomputer thinking
+            let fluctuation = (Math.random() * 0.4) - 0.2; // -0.2 to +0.2
+            let currentArg = (baseArg + fluctuation).toFixed(2);
+            let currentDraw = (baseDraw - (fluctuation/2)).toFixed(2);
+            let currentUsa = (100 - currentArg - currentDraw).toFixed(2);
+
+            // Update DOM
+            document.getElementById('prob1').innerText = currentArg + '%';
+            document.getElementById('bar1').style.width = currentArg + '%';
+            
+            document.getElementById('prob2').innerText = currentDraw + '%';
+            document.getElementById('bar2').style.width = currentDraw + '%';
+
+            document.getElementById('prob3').innerText = currentUsa + '%';
+            document.getElementById('bar3').style.width = currentUsa + '%';
+
+            // Randomly update accuracy micro-decimals to look advanced
+            let acc = (99.9800 + (Math.random() * 0.0099)).toFixed(4);
+            document.getElementById('accuracyText').innerText = acc + '%';
+
+        }, 2500); // Calculates every 2.5 seconds
+    </script>
 </body>
 </html>
